@@ -38,7 +38,7 @@ CREATE TABLE `admin` (
 --
 
 INSERT INTO `admin` (`id`, `UserName`, `Password`, `updationDate`) VALUES
-(1, 'admin', '21232f297a57a5a743894a0e4a801fc3', '2017-11-10 01:38:32');
+(1, 'admin', 'F925916E2754E5E03F75DD58A5733251', '2019-4-10 01:38:32');
 
 -- --------------------------------------------------------
 
@@ -88,3 +88,10 @@ CREATE TABLE `tblenquiry` (
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
+CREATE TABLE `tblusers` (
+  `FullName` varchar(100) NOT NULL,
+  `MobileNumber` char(10) NOT NULL,
+  `EmailId` varchar(100) NOT NULL,
+  `Password` varchar(100) NOT NULL
+)ENGINE=InnoDB DEFAULT CHARSET=latin1;
