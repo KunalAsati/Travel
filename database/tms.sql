@@ -95,3 +95,13 @@ CREATE TABLE `tblusers` (
   `EmailId` varchar(100) NOT NULL,
   `Password` varchar(100) NOT NULL
 )ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+CREATE TABLE `TblTourPackages`(
+  `PackageName` varchar(100) NOT NULL,
+  `PackageType` varchar(100) NOT NULL,
+  `PackageLocation` varchar(100) NOT NULL,
+  `PackagePrice` int(11) NOT NULL,
+  `PackageFetures` varchar(100) NOT NULL,
+  `PackageDetails` varchar(200) NOT NULL,
+  `PackageImage`   LONGBLOB NOT NULL
+  )ENGINE=InnoDB DEFAULT CHARSET=latin1;
