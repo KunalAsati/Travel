@@ -96,7 +96,7 @@ CREATE TABLE `tblusers` (
   `Password` varchar(100) NOT NULL
 )ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-CREATE TABLE `TblTourPackages`(
+CREATE TABLE `tbltourpackages`(
   `PackageName` varchar(100) NOT NULL,
   `PackageType` varchar(100) NOT NULL,
   `PackageLocation` varchar(100) NOT NULL,
