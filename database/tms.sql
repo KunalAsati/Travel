@@ -10,7 +10,8 @@
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
-
+CREATE Database tms;
+SET tms;
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
@@ -93,10 +94,13 @@ CREATE TABLE `tblusers` (
   `FullName` varchar(100) NOT NULL,
   `MobileNumber` char(10) NOT NULL,
   `EmailId` varchar(100) NOT NULL,
-  `Password` varchar(100) NOT NULL
+  `Password` varchar(100) NOT NULL,
+  `RegDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `UpdationDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 )ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 CREATE TABLE `tbltourpackages`(
+  `PackageId` INT AUTO_INCREMENT PRIMARY KEY,
   `PackageName` varchar(100) NOT NULL,
   `PackageType` varchar(100) NOT NULL,
   `PackageLocation` varchar(100) NOT NULL,
@@ -105,3 +109,16 @@ CREATE TABLE `tbltourpackages`(
   `PackageDetails` varchar(200) NOT NULL,
   `PackageImage`   LONGBLOB NOT NULL
   )ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--use of below table is unkown
+
+  Create table `tblissues`{
+    id	INT AUTO_INCREMENT PRIMARY KEY,
+    Issue	varchar(100) NOT NULL,
+    Description	 varchar(100) NOT NULL,
+    AdminRemark	varchar(100) NOT NULL,
+    PostingDate	timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    AdminremarkDate timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+  }
+
+   --tblissues.id as id,tblusers.FullName as fname,tblusers.MobileNumber as mnumber,tblusers.EmailId as email,tblissues.Issue as issue,tblissues.Description as Description,tblissues.PostingDate as PostingDate from tblissues join tblusers on tblusers.EmailId=tblissues.UserEmail";
