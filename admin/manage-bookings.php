@@ -44,7 +44,7 @@ $msg="Booking Confirm successfully";
 <!DOCTYPE HTML>
 <html>
 <head>
-<title>TMS | Admin manage Bookings</title>
+<title>TPR | Admin manage Bookings</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
@@ -128,7 +128,7 @@ $msg="Booking Confirm successfully";
 					    <table id="table">
 						<thead>
 						  <tr>
-						  <th>Booikn id</th>
+						  <th>Booking id</th>
 							<th>Name</th>
 							<th>Mobile No.</th>
 							<th>Email Id</th>

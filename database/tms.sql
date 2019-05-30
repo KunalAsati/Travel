@@ -10,8 +10,9 @@
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
-CREATE Database tms;
-SET tms;
+-- CREATE Database tms
+-- use tms
+
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
@@ -48,7 +49,7 @@ INSERT INTO `admin` (`id`, `UserName`, `Password`, `updationDate`) VALUES
 --
 
 CREATE TABLE `tblbooking` (
-  `BookingId` int(11) NOT NULL,
+  `BookingId` int(11) AUTO_INCREMENT,
   `PackageId` int(11) NOT NULL,
   `UserEmail` varchar(100) NOT NULL,
   `FromDate` varchar(100) NOT NULL,
@@ -57,18 +58,19 @@ CREATE TABLE `tblbooking` (
   `RegDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `status` int(11) NOT NULL,
   `CancelledBy` varchar(5) DEFAULT NULL,
-  `UpdationDate` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP
+  `UpdationDate` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY(BookingId)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `tblbooking`
 --
 
-INSERT INTO `tblbooking` (`BookingId`, `PackageId`, `UserEmail`, `FromDate`, `ToDate`, `Comment`, `RegDate`, `status`, `CancelledBy`, `UpdationDate`) VALUES
+/* INSERT INTO `tblbooking` (`BookingId`, `PackageId`, `UserEmail`, `FromDate`, `ToDate`, `Comment`, `RegDate`, `status`, `CancelledBy`, `UpdationDate`) VALUES
 (2, 1, 'anuj@gmail.com', '05/18/2017', '05/31/2017', '"Lorem ipsum dolor sit amet, cpariatur. Excepteur sint ', '2017-05-13 19:01:10', 2, 'u', '2017-05-13 21:30:23'),
 (9, 1, 'demo@test.com', '05/19/2017', '05/21/2017', 'demo test demo test', '2017-05-14 07:45:11', 1, NULL, '2017-05-14 07:47:45'),
 (10, 5, 'abc@g.com', '05/22/2017', '05/24/2017', 'test test t test test ttest test ttest test ttest test ttest test ttest test ttest test ttest test ttest test ttest test ttest test ttest test ttest test t', '2017-05-14 07:56:26', 1, NULL, '2017-05-14 07:58:19');
-
+*/
 -- --------------------------------------------------------
 
 --
@@ -86,9 +88,9 @@ CREATE TABLE `tblenquiry` (
   `Status` int(1) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */ --;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */ --;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */ --;
 
 CREATE TABLE `tblusers` (
   `FullName` varchar(100) NOT NULL,
@@ -112,13 +114,31 @@ CREATE TABLE `tbltourpackages`(
 
 --use of below table is unkown
 
-  Create table `tblissues`{
-    id	INT AUTO_INCREMENT PRIMARY KEY,
-    Issue	varchar(100) NOT NULL,
-    Description	 varchar(100) NOT NULL,
-    AdminRemark	varchar(100) NOT NULL,
-    PostingDate	timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    AdminremarkDate timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
-  }
+  Create table `tblissues`(
+    `id`	INT AUTO_INCREMENT PRIMARY KEY,
+    `UserEmail` varchar(100) NOT NULL,
+    `Issue`	varchar(100) NOT NULL,
+    `Description`	 varchar(100) NOT NULL,
+    `AdminRemark`	varchar(100) NOT NULL,
+    `PostingDate`	timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    `AdminremarkDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+  )
 
-   --tblissues.id as id,tblusers.FullName as fname,tblusers.MobileNumber as mnumber,tblusers.EmailId as email,tblissues.Issue as issue,tblissues.Description as Description,tblissues.PostingDate as PostingDate from tblissues join tblusers on tblusers.EmailId=tblissues.UserEmail";
+  /*tblissues.id as id,tblusers.FullName as fname,tblusers.MobileNumber as mnumber,tblusers.EmailId as email,tblissues.Issue as issue,tblissues.Description as Description,tblissues.PostingDate as PostingDate from tblissues join tblusers on tblusers.EmailId=tblissues.UserEmail";
+*/
+create table tblpages(
+  `type` varchar(100) NOT NULL,
+  `detail` TEXT NOT NULL
+)
+
+ insert into `tblpages` (type, detail) VALUES ("terms", "test1"),
+ ("privacy", "test2"),
+ ("aboutus", "test3"),
+ ("software", "test4"),
+ ("aspnet", "test5"),
+ ("objectives", "test6"),
+ ("vbnet", "test7"),
+ ("candc", "test8"),
+ ("contact", "test9");
+
+ 
