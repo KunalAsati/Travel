@@ -38,7 +38,7 @@ include('includes/config.php');
 
 
 <!--- rupes ---->
-<div class="container">
+ <div class="container">
 	<div class="rupes">
 		<div class="col-md-4 rupes-left wow fadeInDown animated animated" data-wow-delay=".5s" style="visibility: visible; animation-delay: 0.5s; animation-name: fadeInDown;">
 			<div class="rup-left">
@@ -75,20 +75,22 @@ include('includes/config.php');
 		</div>
 	
 	</div>
-</div>
+</div> -->
 <!--- /rupes ---->
 
 
 
 
+
 <!---holiday---->
+
 <div class="container">
 	<div class="holiday">
 	
 
 
 
-	
+
 	<h3>Package List</h3>
 
 					
@@ -112,7 +114,7 @@ foreach($results as $result)
 					<p><b>Features</b> <?php echo htmlentities($result->PackageFetures);?></p>
 				</div>
 				<div class="col-md-3 room-right wow fadeInRight animated" data-wow-delay=".5s">
-					<h5>USD <?php echo htmlentities($result->PackagePrice);?></h5>
+					<h5>INR <?php echo htmlentities($result->PackagePrice);?></h5>
 					<a href="package-details.php?pkgid=<?php echo htmlentities($result->PackageId);?>" class="view">Details</a>
 				</div>
 				<div class="clearfix"></div>
@@ -129,7 +131,7 @@ foreach($results as $result)
 
 
 <!--- routes ---->
-<div class="routes">
+ <div class="routes">
 	<div class="container">
 		<div class="col-md-4 routes-left wow fadeInRight animated" data-wow-delay=".5s">
 			<div class="rou-left">
@@ -163,7 +165,7 @@ foreach($results as $result)
 		</div>
 		<div class="clearfix"></div>
 	</div>
-</div>
+</div> 
 
 <?php include('includes/footer.php');?>
 <!-- signup -->

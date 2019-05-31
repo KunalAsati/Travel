@@ -8,14 +8,16 @@ $pid=intval($_GET['pkgid']);
 $useremail=$_SESSION['login'];
 $fromdate=$_POST['fromdate'];
 $todate=$_POST['todate'];
+$price=$_POST['price'];
 $comment=$_POST['comment'];
 $status=0;
-$sql="INSERT INTO tblbooking(PackageId,UserEmail,FromDate,ToDate,Comment,status) VALUES(:pid,:useremail,:fromdate,:todate,:comment,:status)";
+$sql="INSERT INTO tblbooking(PackageId,UserEmail,FromDate,ToDate,Price,Comment,status) VALUES(:pid,:useremail,:fromdate,:todate,:price,:comment,:status)";
 $query = $dbh->prepare($sql);
 $query->bindParam(':pid',$pid,PDO::PARAM_STR);
 $query->bindParam(':useremail',$useremail,PDO::PARAM_STR);
 $query->bindParam(':fromdate',$fromdate,PDO::PARAM_STR);
 $query->bindParam(':todate',$todate,PDO::PARAM_STR);
+$query->bindParam(':price',$price,PDO::PARAM_STR);
 $query->bindParam(':comment',$comment,PDO::PARAM_STR);
 $query->bindParam(':status',$status,PDO::PARAM_STR);
 $query->execute();
@@ -130,7 +132,7 @@ foreach($results as $result)
 						<div class="clearfix"></div>
 				<div class="grand">
 					<p>Grand Total</p>
-					<h3>USD.800</h3>
+					<h3>USD. <?php echo htmlentities($result->PackagePrice);?></h3>
 				</div>
 			</div>
 		<h3>Package Details</h3>

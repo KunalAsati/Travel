@@ -54,6 +54,7 @@ CREATE TABLE `tblbooking` (
   `UserEmail` varchar(100) NOT NULL,
   `FromDate` varchar(100) NOT NULL,
   `ToDate` varchar(100) NOT NULL,
+  `Price` int not null,
   `Comment` mediumtext NOT NULL,
   `RegDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `status` int(11) NOT NULL,
