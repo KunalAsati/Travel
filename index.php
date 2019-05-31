@@ -80,7 +80,7 @@ foreach($results as $result)
 
 
 <div class="container">
-<form name="book" method="post">
+<form name="book" action="index.php" method="post">
 <div class="ban-bottom">
 				<div class="bnr-right">
 				<label class="col-sm-2 control-label">Source</label>
@@ -120,7 +120,7 @@ foreach($results as $result)
             <li class="spe" align="center">
 					<button type="submit" name="submit" class="btn-primary btn">Search</button>
 						</li>
-						<ul style="list-style: none;">
+						</ul>
             </div>
 
 </form>

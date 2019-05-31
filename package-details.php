@@ -116,9 +116,17 @@ foreach($results as $result)
 			<div class="col-md-8 selectroom_right wow fadeInRight animated" data-wow-delay=".5s">
 				<h2><?php echo htmlentities($result->PackageName);?></h2>
 				<p class="dow">#PKG-<?php echo htmlentities($result->PackageId);?></p>
-				<p><b>Package Type :</b> <?php echo htmlentities($result->PackageType);?></p>
 				<p><b>Package Location :</b> <?php echo htmlentities($result->PackageLocation);?></p>
-					<p><b>Features</b> <?php echo htmlentities($result->PackageFetures);?></p>
+				<p><b>Number of People:</b> <?php echo htmlentities($result->NumberOfPeoples);?></p>
+					<p><b>Number of days: </b> <?php echo htmlentities($result->NumberOfDays);?></p>
+
+					<p><b>Stay Price: </b> <?php echo htmlentities($result->StayPrice);?></p>
+					
+					<h3>Travel by</h3>
+					<input type="radio" name="vehicle" value="bus" checked> Bus- ₹<?php echo htmlentities($result->Bus);?> 
+  <input type="radio" name="vehicle" value="train"> Train: ₹<?php echo htmlentities($result->Train);?>
+
+  <input type="radio" name="vehicle" value="flight"> Flight- ₹<?php echo htmlentities($result->Airlines);?>
 					<div class="ban-bottom">
 				<div class="bnr-right">
 				<label class="inputLabel">From</label>
@@ -132,7 +140,7 @@ foreach($results as $result)
 						<div class="clearfix"></div>
 				<div class="grand">
 					<p>Grand Total</p>
-					<h3>INR  <?php echo htmlentities($result->StayPrice+$result->Bus+$result->Train+$result->Airlines);?></h3>
+					<h3>₹<?php echo htmlentities($result->StayPrice+$result->Bus+$result->Train+$result->Airlines);?></h3>
 				</div>
 			</div>
 		<h3>Package Details</h3>
