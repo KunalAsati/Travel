@@ -37,47 +37,51 @@ include('includes/config.php');
 </div>
 
 
-<!--- rupes ---->
- <div class="container">
-	<div class="rupes">
-		<div class="col-md-4 rupes-left wow fadeInDown animated animated" data-wow-delay=".5s" style="visibility: visible; animation-delay: 0.5s; animation-name: fadeInDown;">
-			<div class="rup-left">
-				<a href="offers.html"><i class="fa fa-usd"></i></a>
-			</div>
-			<div class="rup-rgt">
-				<h3>UP TO USD. 50 OFF</h3>
-				<h4><a href="offers.html">TRAVEL SMART</a></h4>
 
-			</div>
-				<div class="clearfix"></div>
-		</div>
-		<div class="col-md-4 rupes-left wow fadeInDown animated animated" data-wow-delay=".5s" style="visibility: visible; animation-delay: 0.5s; animation-name: fadeInDown;">
-			<div class="rup-left">
-				<a href="offers.html"><i class="fa fa-h-square"></i></a>
-			</div>
-			<div class="rup-rgt">
-				<h3>UP TO 70% OFF</h3>
-				<h4><a href="offers.html">ON HOTELS ACROSS WORLD</a></h4>
 
-			</div>
-				<div class="clearfix"></div>
-		</div>
-		<div class="col-md-4 rupes-left wow fadeInDown animated animated" data-wow-delay=".5s" style="visibility: visible; animation-delay: 0.5s; animation-name: fadeInDown;">
-			<div class="rup-left">
-				<a href="offers.html"><i class="fa fa-mobile"></i></a>
-			</div>
-			<div class="rup-rgt">
-				<h3>FLAT USD. 50 OFF</h3>
-				<h4><a href="offers.html">US APP OFFER</a></h4>
+<!--search-->
 
+
+<div class="container">
+<form name="book" method="post">
+<div class="ban-bottom">
+				<div class="bnr-right">
+				<label class="inputLabel">From</label>
+				<input class="text" id="fromloc" type="text" placeholder="location"  name="fromloc" required="">
 			</div>
-				<div class="clearfix"></div>
-		</div>
+            <div class="ban-bottom">
+				<div class="bnr-right">
+				<label class="inputLabel">Destination</label>
+				<input class="text" id="toloc" type="text" placeholder="location"  name="toloc" required="">
+			</div>
 
-	</div>
-</div> -->
-<!--- /rupes ---->
+            <div class="ban-bottom">
+				<div class="bnr-right">
+				<label class="inputLabel">From</label>
+				<input class="date" id="datepicker" type="text" placeholder="dd-mm-yyyy"  name="fromdate" required="">
+			</div>
+            <div class="ban-bottom">
+				<div class="bnr-right">
+				<label class="inputLabel">To</label>
+				<input class="date" id="datepicker" type="text" placeholder="dd-mm-yyyy"  name="fromdate" required="">
+			</div>
+            <ul>
 
+					<li class="spe">
+						<label class="inputLabel">Budget</label>
+						<input class="special" type="number" name="budget" required="">
+					</li>
+            <div class="clearfix"></div>
+            <li class="spe" align="center">
+					<button type="submit" name="search" class="btn-primary btn">Search</button>
+						</li>
+            </ul>
+
+</form>
+</div>
+
+
+<div class="clearfix"></div>
 
 
 
@@ -129,42 +133,6 @@ foreach($results as $result)
 
 
 
-<!--- routes ---->
- <div class="routes">
-	<div class="container">
-		<div class="col-md-4 routes-left wow fadeInRight animated" data-wow-delay=".5s">
-			<div class="rou-left">
-				<a href="#"><i class="glyphicon glyphicon-list-alt"></i></a>
-			</div>
-			<div class="rou-rgt wow fadeInDown animated" data-wow-delay=".5s">
-				<h3>80000</h3>
-				<p>Enquiries</p>
-			</div>
-				<div class="clearfix"></div>
-		</div>
-		<div class="col-md-4 routes-left">
-			<div class="rou-left">
-				<a href="#"><i class="fa fa-user"></i></a>
-			</div>
-			<div class="rou-rgt">
-				<h3>1900</h3>
-				<p>Regestered users</p>
-			</div>
-				<div class="clearfix"></div>
-		</div>
-		<div class="col-md-4 routes-left wow fadeInRight animated" data-wow-delay=".5s">
-			<div class="rou-left">
-				<a href="#"><i class="fa fa-ticket"></i></a>
-			</div>
-			<div class="rou-rgt">
-				<h3>7,00,00,000+</h3>
-				<p>Booking</p>
-			</div>
-				<div class="clearfix"></div>
-		</div>
-		<div class="clearfix"></div>
-	</div>
-</div> 
 
 <?php include('includes/footer.php');?>
 <!-- signup -->
