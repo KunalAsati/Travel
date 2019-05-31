@@ -46,36 +46,45 @@ include('includes/config.php');
 <form name="book" method="post">
 <div class="ban-bottom">
 				<div class="bnr-right">
-				<label class="inputLabel">From</label>
+				<label class="col-sm-2 control-label">Source</label>
 				<input class="text" id="fromloc" type="text" placeholder="location"  name="fromloc" required="">
 			</div>
             <div class="ban-bottom">
 				<div class="bnr-right">
-				<label class="inputLabel">Destination</label>
+				<label class="col-sm-2 control-label">Destination</label>
 				<input class="text" id="toloc" type="text" placeholder="location"  name="toloc" required="">
 			</div>
-
+			<div class="clearfix"></div>
             <div class="ban-bottom">
 				<div class="bnr-right">
-				<label class="inputLabel">From</label>
-				<input class="date" id="datepicker" type="text" placeholder="dd-mm-yyyy"  name="fromdate" required="">
+				<label class="col-sm-2 control-label">From</label>
+				<input class="date" id="fromdate" type="text" placeholder="dd-mm-yyyy"  name="fromdate" required="">
 			</div>
             <div class="ban-bottom">
 				<div class="bnr-right">
-				<label class="inputLabel">To</label>
-				<input class="date" id="datepicker" type="text" placeholder="dd-mm-yyyy"  name="fromdate" required="">
+				<label class="col-sm-2 control-label">To</label>
+				<input class="date" id="todate" type="text" placeholder="dd-mm-yyyy"  name="todate" required="">
 			</div>
-            <ul>
+			<div class="clearfix"></div>
+            <div class="ban-bottom">
 
-					<li class="spe">
-						<label class="inputLabel">Budget</label>
-						<input class="special" type="number" name="budget" required="">
-					</li>
+			<div class="bnr-right">
+						<label class="inputLabel">Number of people</label>
+						<input class="special" type="number" name="numpeople" required="">
+			</div>
+						
+					
+			<div class="bnr-right">
+			<label class="inputLabel">Budget</label>
+			<input class="special" type="number" name="budget" required="">
+			</div>
             <div class="clearfix"></div>
+			<ul style="list-style: none;">
             <li class="spe" align="center">
 					<button type="submit" name="search" class="btn-primary btn">Search</button>
 						</li>
-            </ul>
+						<ul style="list-style: none;">
+            </div>
 
 </form>
 </div>
@@ -111,13 +120,13 @@ foreach($results as $result)
 					<img src="admin/pacakgeimages/<?php echo htmlentities($result->PackageImage);?>" class="img-responsive" alt="">
 				</div>
 				<div class="col-md-6 room-midle wow fadeInUp animated" data-wow-delay=".5s">
-					<h4>Package Name: <?php echo htmlentities($result->PackageName);?></h4>
-					<h6>Package Type : <?php echo htmlentities($result->PackageType);?></h6>
-					<p><b>Package Location :</b> <?php echo htmlentities($result->PackageLocation);?></p>
-					<p><b>Features</b> <?php echo htmlentities($result->PackageFetures);?></p>
+					<h4>Package Location: <?php echo htmlentities($result->PackageLocation);?></h4>
+					<h6>Number of Days : <?php echo htmlentities($result->NumberOfDays);?></h6>
+					<p><b>Package Detail :</b> <?php echo htmlentities($result->PackageDetails);?></p>
+					<p><b>Number of People :</b> <?php echo htmlentities($result->NumberOfPeoples);?></p>
 				</div>
 				<div class="col-md-3 room-right wow fadeInRight animated" data-wow-delay=".5s">
-					<h5>INR <?php echo htmlentities($result->PackagePrice);?></h5>
+					<h5>INR <?php echo htmlentities($result->StayPrice);?></h5>
 					<a href="package-details.php?pkgid=<?php echo htmlentities($result->PackageId);?>" class="view">Details</a>
 				</div>
 				<div class="clearfix"></div>
