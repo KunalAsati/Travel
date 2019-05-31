@@ -18,7 +18,7 @@ $query->bindParam(':subject',$subject,PDO::PARAM_STR);
 $query->bindParam(':description',$description,PDO::PARAM_STR);
 $query->execute();
 $lastInsertId = $dbh->lastInsertId();
-if($lastInsertId)
+if($lastInsertId!=null)
 {
 $msg="Enquiry  Successfully submited";
 }
