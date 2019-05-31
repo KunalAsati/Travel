@@ -2,6 +2,12 @@
 session_start();
 error_reporting(0);
 include('includes/config.php');
+
+if(isset($_POST['search']))
+{
+
+}
+
 ?>
 <!DOCTYPE HTML>
 <html>
@@ -37,87 +43,62 @@ include('includes/config.php');
 </div>
 
 
+<div class="container">
+<form name="book" method="post">
+<div class="ban-bottom">
+				<div class="bnr-right">
+				<label class="inputLabel">From</label>
+				<input class="text" id="fromloc" type="text" placeholder="location"  name="fromloc" required="">
+			</div>
+            <div class="ban-bottom">
+				<div class="bnr-right">
+				<label class="inputLabel">Destination</label>
+				<input class="text" id="toloc" type="text" placeholder="location"  name="toloc" required="">
+			</div>
 
+            <div class="ban-bottom">
+				<div class="bnr-right">
+				<label class="inputLabel">From</label>
+				<input class="date" id="datepicker" type="text" placeholder="dd-mm-yyyy"  name="fromdate" required="">
+			</div>
+            <div class="ban-bottom">
+				<div class="bnr-right">
+				<label class="inputLabel">To</label>
+				<input class="date" id="datepicker" type="text" placeholder="dd-mm-yyyy"  name="fromdate" required="">
+			</div>
+            <ul>
 
-<!--from to-->
-
-	
-
-
-
-<form name="book" method="post" >
-<div class="selectroom">
-	<div class="container">
-<div class="tab-content">
-					<div class="tab-pane active" id="horizontal-form">
-						<form class="form-horizontal" name="package" method="post" enctype="multipart/form-data">
-							<div class="form-group">
-								<label for="focusedinput" class="col-sm-2 control-label">From</label>
-								<div class="col-sm-8">
-								   <select name="menu1" onChange="MM_jumpMenu('parent',this,0)">
-			  <option value="" selected="selected" class="form-control">Select location</option>
-			  <option value="manage-pages.php?type=terms">terms and condition</option>
-			  <option value="manage-pages.php?type=privacy">privacy and policy</option>
-			  <option value="manage-pages.php?type=aboutus">aboutus</option> 
-			  <option value="manage-pages.php?type=contact">Contact us</option>
-			</select>
-								</div>
-							</div>
-<br>
-<div class="tab-content">
-					<div class="tab-pane active" id="horizontal-form">
-						<form class="form-horizontal" name="package" method="post" enctype="multipart/form-data">
-							<div class="form-group">
-								<label for="focusedinput" class="col-sm-2 control-label">To</label>
-								<div class="col-sm-8">
-								   <select name="menu1" onChange="MM_jumpMenu('parent',this,0)">
-			  <option value="" selected="selected" class="form-control">Select location</option>
-			  <option value="manage-pages.php?type=terms">terms and condition</option>
-			  <option value="manage-pages.php?type=privacy">privacy and policy</option>
-			  <option value="manage-pages.php?type=aboutus">aboutus</option> 
-			  <option value="manage-pages.php?type=contact">Contact us</option>
-			</select>
-								</div>
-							</div>
-
-			<div class="ban-bottom">
-			<div class="bnr-right">
-			<label class="inputLabel">Departure</label>
-			<input class="date" id="datepicker" type="text" placeholder="dd-mm-yyyy"  name="fromdate" required="">
-		</div></div>
-		<div class="ban-bottom">
-			<div class="bnr-right">
-			<label class="inputLabel">Return</label>
-			<input class="date" id="datepicker" type="text" placeholder="dd-mm-yyyy"  name="fromdate" required="">
-		</div></div>
-
-		<div class="ban-bottom">
-		<div class="bnr-right">
-		<label class="inputLabel">budget</label>
-		<input type="number">
-		</div>
-		</div>
-
-		<button type="submit" name="search" class="btn-primary btn">Search</button>
-
-        </div>
-</div>
+					<li class="spe">
+						<label class="inputLabel">Budget</label>
+						<input class="special" type="number" name="budget" required="">
+					</li>
+            <div class="clearfix"></div>
+            <li class="spe" align="center">
+					<button type="submit" name="search" class="btn-primary btn">Search</button>
+						</li>
+            </ul>
 
 </form>
+</div>
+
+
+<div class="clearfix"></div>
 
 
 
-      	
+
+
+
 
 <?php include('includes/footer.php');?>
 <!-- signup -->
-<?php include('includes/signup.php');?>			
+<?php include('includes/signup.php');?>
 <!-- //signu -->
 <!-- signin -->
-<?php include('includes/signin.php');?>			
+<?php include('includes/signin.php');?>
 <!-- //signin -->
 <!-- write us -->
-<?php include('includes/write-us.php');?>			
+<?php include('includes/write-us.php');?>
 <!-- //write us -->
 </body>
 </html>
