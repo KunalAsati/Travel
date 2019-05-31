@@ -58,13 +58,13 @@ foreach($results as $result)
 					<img src="admin/pacakgeimages/<?php echo htmlentities($result->PackageImage);?>" class="img-responsive" alt="">
 				</div>
 				<div class="col-md-6 room-midle wow fadeInUp animated" data-wow-delay=".5s">
-					<h4>Package Name: <?php echo htmlentities($result->PackageName);?></h4>
-					<h6>Package Type : <?php echo htmlentities($result->PackageType);?></h6>
-					<p><b>Package Location :</b> <?php echo htmlentities($result->PackageLocation);?></p>
-					<p><b>Features</b> <?php echo htmlentities($result->PackageFetures);?></p>
+				<h4>Package Location: <?php echo htmlentities($result->PackageLocation);?></h4>
+					<h6>Number of Days : <?php echo htmlentities($result->NumberOfDays);?></h6>
+					<p><b>Package Detail :</b> <?php echo htmlentities($result->PackageDetails);?></p>
+					<p><b>Number of People :</b> <?php echo htmlentities($result->NumberOfPeoples);?></p>
 				</div>
 				<div class="col-md-3 room-right wow fadeInRight animated" data-wow-delay=".5s">
-					<h5>USD <?php echo htmlentities($result->PackagePrice);?></h5>
+					<h5>₹<?php echo htmlentities($result->StayPrice+$result->Bus+$result->Train+$result->Airlines);?></h5>
 					<a href="package-details.php?pkgid=<?php echo htmlentities($result->PackageId);?>" class="view">Details</a>
 				</div>
 				<div class="clearfix"></div>
