@@ -9,22 +9,27 @@ header('location:index.php');
 else{
 if(isset($_POST['submit']))
 {
-$pname=$_POST['packagename'];
-$ptype=$_POST['packagetype'];	
-$plocation=$_POST['packagelocation'];
-$pprice=$_POST['packageprice'];	
-$pfeatures=$_POST['packagefeatures'];
-$pdetails=$_POST['packagedetails'];	
+	$plocation=$_POST['packagelocation'];
+	$pnumpeople=$_POST['pnumpeople'];
+	$pdetails=$_POST['packagedetails'];
+	$pprice=$_POST['packageprice'];
+	$bprice=$_POST['busprice'];
+	$tprice=$_POST['trainprice'];
+	$aprice=$_POST['airprice'];
+	$numday=$_POST['numday'];
 $pimage=$_FILES["packageimage"]["name"];
 move_uploaded_file($_FILES["packageimage"]["tmp_name"],"pacakgeimages/".$_FILES["packageimage"]["name"]);
-$sql="INSERT INTO tbltourpackages(PackageName,PackageType,PackageLocation,PackagePrice,PackageFetures,PackageDetails,PackageImage) VALUES(:pname,:ptype,:plocation,:pprice,:pfeatures,:pdetails,:pimage)";
+
+$sql="INSERT INTO tbltourpackages(PackageLocation,NumberOfPeoples,PackageDetails,StayPrice,Bus,Train,Airlines,NumberOfDays,PackageImage) VALUES(:plocation,:pnumpeople,:pdetails,:pprice,:bprice,:tprice,:aprice,:numday,:pimage)";
 $query = $dbh->prepare($sql);
-$query->bindParam(':pname',$pname,PDO::PARAM_STR);
-$query->bindParam(':ptype',$ptype,PDO::PARAM_STR);
 $query->bindParam(':plocation',$plocation,PDO::PARAM_STR);
-$query->bindParam(':pprice',$pprice,PDO::PARAM_STR);
-$query->bindParam(':pfeatures',$pfeatures,PDO::PARAM_STR);
+$query->bindParam(':pnumpeople',$pnumpeople,PDO::PARAM_STR);
 $query->bindParam(':pdetails',$pdetails,PDO::PARAM_STR);
+$query->bindParam(':pprice',$pprice,PDO::PARAM_STR);
+$query->bindParam(':bprice',$bprice,PDO::PARAM_STR);
+$query->bindParam(':tprice',$tprice,PDO::PARAM_STR);
+$query->bindParam(':aprice',$aprice,PDO::PARAM_STR);
+$query->bindParam(':numday',$numday,PDO::PARAM_STR);
 $query->bindParam(':pimage',$pimage,PDO::PARAM_STR);
 $query->execute();
 $lastInsertId = $dbh->lastInsertId();
@@ -102,53 +107,70 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
   	         <div class="tab-content">
 						<div class="tab-pane active" id="horizontal-form">
 							<form class="form-horizontal" name="package" method="post" enctype="multipart/form-data">
-								<div class="form-group">
-									<label for="focusedinput" class="col-sm-2 control-label">Package Name</label>
-									<div class="col-sm-8">
-										<input type="text" class="form-control1" name="packagename" id="packagename" placeholder="Create Package" required>
-									</div>
-								</div>
-<div class="form-group">
-									<label for="focusedinput" class="col-sm-2 control-label">Package Type</label>
-									<div class="col-sm-8">
-										<input type="text" class="form-control1" name="packagetype" id="packagetype" placeholder=" Package Type eg- Family Package / Couple Package" required>
-									</div>
-								</div>
 
-<div class="form-group">
+							<div class="form-group">
 									<label for="focusedinput" class="col-sm-2 control-label">Package Location</label>
 									<div class="col-sm-8">
 										<input type="text" class="form-control1" name="packagelocation" id="packagelocation" placeholder=" Package Location" required>
 									</div>
 								</div>
 
-<div class="form-group">
-									<label for="focusedinput" class="col-sm-2 control-label">Package Price in USD</label>
+								<div class="form-group">
+									<label for="focusedinput" class="col-sm-2 control-label">Number of people</label>
 									<div class="col-sm-8">
-										<input type="text" class="form-control1" name="packageprice" id="packageprice" placeholder=" Package Price is USD" required>
+										<input type="text" class="form-control1" name="pnumpeople" id="pnumpeople" placeholder=" Number of people" required>
 									</div>
-								</div>
+								</div>	
 
-<div class="form-group">
-									<label for="focusedinput" class="col-sm-2 control-label">Package Features</label>
-									<div class="col-sm-8">
-										<input type="text" class="form-control1" name="packagefeatures" id="packagefeatures" placeholder="Package Features Eg-free Pickup-drop facility" required>
-									</div>
-								</div>		
-
-
-<div class="form-group">
+								<div class="form-group">
 									<label for="focusedinput" class="col-sm-2 control-label">Package Details</label>
 									<div class="col-sm-8">
 										<textarea class="form-control" rows="5" cols="50" name="packagedetails" id="packagedetails" placeholder="Package Details" required></textarea> 
 									</div>
-								</div>															
-<div class="form-group">
+								</div>		
+
+								<div class="form-group">
+									<label for="focusedinput" class="col-sm-2 control-label">Stay Price</label>
+									<div class="col-sm-8">
+										<input type="text" class="form-control1" name="packageprice" id="packageprice" placeholder=" Stay Price in INR" required>
+									</div>
+								</div>
+
+								<div class="form-group">
+									<label for="focusedinput" class="col-sm-2 control-label">Bus Price</label>
+									<div class="col-sm-8">
+										<input type="text" class="form-control1" name="busprice" id="busprice" placeholder=" Bus Price in INR" required>
+									</div>
+								</div>
+
+								<div class="form-group">
+									<label for="focusedinput" class="col-sm-2 control-label">Train Price</label>
+									<div class="col-sm-8">
+										<input type="text" class="form-control1" name="trainprice" id="trainprice" placeholder=" Train Price in INR" required>
+									</div>
+								</div>
+
+								<div class="form-group">
+									<label for="focusedinput" class="col-sm-2 control-label">Flight Price</label>
+									<div class="col-sm-8">
+										<input type="text" class="form-control1" name="airprice" id="airprice" placeholder=" Flight Price in INR" required>
+									</div>
+								</div>
+
+								<div class="form-group">
+									<label for="focusedinput" class="col-sm-2 control-label">Number of days</label>
+									<div class="col-sm-8">
+										<input type="text" class="form-control1" name="numday" id="numday" placeholder="Number of days" required>
+									</div>
+								</div>
+
+								<div class="form-group">
 									<label for="focusedinput" class="col-sm-2 control-label">Package Image</label>
 									<div class="col-sm-8">
 										<input type="file" name="packageimage" id="packageimage" required>
 									</div>
 								</div>	
+
 
 								<div class="row">
 			<div class="col-sm-8 col-sm-offset-2">

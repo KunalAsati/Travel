@@ -102,6 +102,25 @@ CREATE TABLE `tblusers` (
   `UpdationDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 )ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+
+CREATE TABLE `tbltourpackages`(
+`PackageId` INT AUTO_INCREMENT PRIMARY KEY,
+`PackageLocation` varchar(100) NOT NULL,
+`NumberOfPeoples` int(11) NOT NULL,
+`PackageDetails`varchar(200) NOT NULL,
+`StayPrice` int(11) NOT NULL,
+`Bus` int(11) NOT NULL,
+`Train` int(11) NOT NULL,
+`Airlines` int(11) NOT NULL,
+`NumberOfDays` int(11) NOT NULL,
+`PackageImage` LONGBLOB NOT NULL,
+`CreationDate`	timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+`UpdationDate` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+)ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+  
+/* old database
 CREATE TABLE `tbltourpackages`(
   `PackageId` INT AUTO_INCREMENT PRIMARY KEY,
   `PackageName` varchar(100) NOT NULL,
@@ -112,7 +131,7 @@ CREATE TABLE `tbltourpackages`(
   `PackageDetails` varchar(200) NOT NULL,
   `PackageImage`   LONGBLOB NOT NULL
   )ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
+ */
 --use of below table is unkown
 
   Create table `tblissues`(

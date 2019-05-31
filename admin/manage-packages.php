@@ -86,10 +86,13 @@ else{
 						<thead>
 						  <tr>
 						  <th>#</th>
-							<th >Name</th>
-							<th>Type</th>
 							<th>Location</th>
-							<th>Price</th>
+							<th>People</th>
+							<th>Stay Price</th>
+							<th>bus Price</th>
+							<th>train Price</th>
+							<th>flight Price</th>
+							<th>Days</th>
 							<th>Creation Date</th>
 							<th>Action</th>
 						  </tr>
@@ -107,11 +110,15 @@ foreach($results as $result)
 {				?>		
 						  <tr>
 							<td><?php echo htmlentities($cnt);?></td>
-							<td><?php echo htmlentities($result->PackageName);?></td>
-							<td><?php echo htmlentities($result->PackageType);?></td>
 							<td><?php echo htmlentities($result->PackageLocation);?></td>
-							<td>$<?php echo htmlentities($result->PackagePrice);?></td>
-							<td><?php echo htmlentities($result->Creationdate);?></td>
+							<td><?php echo htmlentities($result->NumberOfPeoples);?></td>
+							<td>INR.<?php echo htmlentities($result->StayPrice);?></td>
+							<td>INR.<?php echo htmlentities($result->Bus);?></td>
+							<td>INR.<?php echo htmlentities($result->Train);?></td>
+							<td>INR.<?php echo htmlentities($result->Airlines);?></td>
+							<td><?php echo htmlentities($result->NumberOfDays);?></td>
+							<td><?php echo htmlentities($result->CreationDate);?></td>
+
 							<td><a href="update-package.php?pid=<?php echo htmlentities($result->PackageId);?>"><button type="button" class="btn btn-primary btn-block">View Details</button></a></td>
 						  </tr>
 						 <?php $cnt=$cnt+1;} }?>

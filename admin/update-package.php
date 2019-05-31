@@ -10,21 +10,25 @@ else{
 $pid=intval($_GET['pid']);	
 if(isset($_POST['submit']))
 {
-$pname=$_POST['packagename'];
-$ptype=$_POST['packagetype'];	
-$plocation=$_POST['packagelocation'];
-$pprice=$_POST['packageprice'];	
-$pfeatures=$_POST['packagefeatures'];
-$pdetails=$_POST['packagedetails'];	
+	$plocation=$_POST['packagelocation'];
+	$pnumpeople=$_POST['pnumpeople'];
+	$pdetails=$_POST['packagedetails'];
+	$pprice=$_POST['packageprice'];
+	$bprice=$_POST['busprice'];
+	$tprice=$_POST['trainprice'];
+	$aprice=$_POST['airprice'];
+	$numday=$_POST['numday'];
 $pimage=$_FILES["packageimage"]["name"];
-$sql="update tbltourpackages set PackageName=:pname,PackageType=:ptype,PackageLocation=:plocation,PackagePrice=:pprice,PackageFetures=:pfeatures,PackageDetails=:pdetails where PackageId=:pid";
+$sql="update tbltourpackages set PackageLocation=:plocation,NumberOfPeoples=:pnumpeople,PackageDetails=:pdetails,StayPrice=:pprice,Bus=:bprice,Train=:tprice,Airlines=:aprice,NumberOfDays=:numday where PackageId=:pid";
 $query = $dbh->prepare($sql);
-$query->bindParam(':pname',$pname,PDO::PARAM_STR);
-$query->bindParam(':ptype',$ptype,PDO::PARAM_STR);
 $query->bindParam(':plocation',$plocation,PDO::PARAM_STR);
-$query->bindParam(':pprice',$pprice,PDO::PARAM_STR);
-$query->bindParam(':pfeatures',$pfeatures,PDO::PARAM_STR);
+$query->bindParam(':pnumpeople',$pnumpeople,PDO::PARAM_STR);
 $query->bindParam(':pdetails',$pdetails,PDO::PARAM_STR);
+$query->bindParam(':pprice',$pprice,PDO::PARAM_STR);
+$query->bindParam(':bprice',$bprice,PDO::PARAM_STR);
+$query->bindParam(':tprice',$tprice,PDO::PARAM_STR);
+$query->bindParam(':aprice',$aprice,PDO::PARAM_STR);
+$query->bindParam(':numday',$numday,PDO::PARAM_STR);
 $query->bindParam(':pid',$pid,PDO::PARAM_STR);
 $query->execute();
 $msg="Package Updated Successfully";
@@ -107,47 +111,65 @@ foreach($results as $result)
 {	?>
 
 							<form class="form-horizontal" name="package" method="post" enctype="multipart/form-data">
-								<div class="form-group">
-									<label for="focusedinput" class="col-sm-2 control-label">Package Name</label>
-									<div class="col-sm-8">
-										<input type="text" class="form-control1" name="packagename" id="packagename" placeholder="Create Package" value="<?php echo htmlentities($result->PackageName);?>" required>
-									</div>
-								</div>
-<div class="form-group">
-									<label for="focusedinput" class="col-sm-2 control-label">Package Type</label>
-									<div class="col-sm-8">
-										<input type="text" class="form-control1" name="packagetype" id="packagetype" placeholder=" Package Type eg- Family Package / Couple Package" value="<?php echo htmlentities($result->PackageType);?>" required>
-									</div>
-								</div>
 
-<div class="form-group">
+							<div class="form-group">
 									<label for="focusedinput" class="col-sm-2 control-label">Package Location</label>
 									<div class="col-sm-8">
 										<input type="text" class="form-control1" name="packagelocation" id="packagelocation" placeholder=" Package Location" value="<?php echo htmlentities($result->PackageLocation);?>" required>
 									</div>
 								</div>
-
-<div class="form-group">
-									<label for="focusedinput" class="col-sm-2 control-label">Package Price in USD</label>
+							
+								<div class="form-group">
+									<label for="focusedinput" class="col-sm-2 control-label">Number of people</label>
 									<div class="col-sm-8">
-										<input type="text" class="form-control1" name="packageprice" id="packageprice" placeholder=" Package Price is USD" value="<?php echo htmlentities($result->PackagePrice);?>" required>
+										<input type="text" class="form-control1" name="pnumpeople" id="pnumpeople" placeholder=" Number of people" value="<?php echo htmlentities($result->NumberOfPeoples);?>" required>
 									</div>
 								</div>
 
-<div class="form-group">
-									<label for="focusedinput" class="col-sm-2 control-label">Package Features</label>
-									<div class="col-sm-8">
-										<input type="text" class="form-control1" name="packagefeatures" id="packagefeatures" placeholder="Package Features Eg-free Pickup-drop facility" value="<?php echo htmlentities($result->PackageFetures);?>" required>
-									</div>
-								</div>		
-
-
-<div class="form-group">
+								<div class="form-group">
 									<label for="focusedinput" class="col-sm-2 control-label">Package Details</label>
 									<div class="col-sm-8">
 										<textarea class="form-control" rows="5" cols="50" name="packagedetails" id="packagedetails" placeholder="Package Details" required><?php echo htmlentities($result->PackageDetails);?></textarea> 
 									</div>
-								</div>															
+								</div>
+
+								<div class="form-group">
+									<label for="focusedinput" class="col-sm-2 control-label">Stay Price</label>
+									<div class="col-sm-8">
+										<input type="text" class="form-control1" name="packageprice" id="packageprice" placeholder=" Stay Price in INR" value="<?php echo htmlentities($result->StayPrice);?>" required>
+									</div>
+								</div>
+
+								<div class="form-group">
+									<label for="focusedinput" class="col-sm-2 control-label">Bus Price</label>
+									<div class="col-sm-8">
+										<input type="text" class="form-control1" name="busprice" id="busprice" placeholder=" Bus Price in INR" value="<?php echo htmlentities($result->Bus);?>" required>
+									</div>
+								</div>
+
+								<div class="form-group">
+									<label for="focusedinput" class="col-sm-2 control-label">Train Price</label>
+									<div class="col-sm-8">
+										<input type="text" class="form-control1" name="trainprice" id="trainprice" placeholder=" Train Price in INR" value="<?php echo htmlentities($result->Train);?>" required>
+									</div>
+								</div>
+
+								<div class="form-group">
+									<label for="focusedinput" class="col-sm-2 control-label">Flight Price</label>
+									<div class="col-sm-8">
+										<input type="text" class="form-control1" name="airprice" id="airprice" placeholder=" Flight Price in INR" value="<?php echo htmlentities($result->Airlines);?>" required>
+									</div>
+								</div>
+
+								<div class="form-group">
+									<label for="focusedinput" class="col-sm-2 control-label">Number of days</label>
+									<div class="col-sm-8">
+										<input type="text" class="form-control1" name="numday" id="numday" placeholder="Number of days" value="<?php echo htmlentities($result->NumberOfDays);?>" required>
+									</div>
+								</div>
+
+
+															
 <div class="form-group">
 <label for="focusedinput" class="col-sm-2 control-label">Package Image</label>
 <div class="col-sm-8">
@@ -169,7 +191,7 @@ foreach($results as $result)
 			</div>
 		</div>
 						
-					
+				
 						
 						
 						
