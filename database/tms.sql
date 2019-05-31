@@ -25,7 +25,7 @@ SET time_zone = "+00:00";
 -- Table structure for table `admin`
 --
 
-CREATE TABLE `admin` (
+CREATE or replace TABLE `admin` (
   `id` int(11) NOT NULL,
   `UserName` varchar(100) NOT NULL,
   `Password` varchar(100) NOT NULL,
@@ -45,7 +45,7 @@ INSERT INTO `admin` (`id`, `UserName`, `Password`, `updationDate`) VALUES
 -- Table structure for table `tblbooking`
 --
 
-CREATE TABLE `tblbooking` (
+CREATE TABLE or replace `tblbooking` (
   `BookingId` int(11) AUTO_INCREMENT,
   `PackageId` int(11) NOT NULL,
   `UserEmail` varchar(100) NOT NULL,
@@ -62,7 +62,7 @@ CREATE TABLE `tblbooking` (
 
 
 
-CREATE TABLE `tblenquiry` (
+CREATE or replace TABLE `tblenquiry` (
   `id` int(11) AUTO_INCREMENT PRIMARY KEY,
   `FullName` varchar(100) NOT NULL,
   `EmailId` varchar(100) NOT NULL,
@@ -75,7 +75,7 @@ CREATE TABLE `tblenquiry` (
 
 
 
-CREATE TABLE `tblusers` (
+CREATE or replace TABLE `tblusers` (
   `FullName` varchar(100) NOT NULL,
   `MobileNumber` char(10) NOT NULL,
   `EmailId` varchar(100) NOT NULL,
@@ -85,7 +85,7 @@ CREATE TABLE `tblusers` (
 )ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 
-CREATE TABLE `tbltourpackages`(
+CREATE or replace TABLE `tbltourpackages`(
 `PackageId` INT AUTO_INCREMENT PRIMARY KEY,
 `PackageLocation` varchar(100) NOT NULL,
 `NumberOfPeoples` int(11) NOT NULL,
@@ -116,7 +116,7 @@ CREATE TABLE `tbltourpackages`(
  */
 --use of below table is unkown
 
-  Create table `tblissues`(
+  Create or replace table `tblissues`(
     `id`	INT AUTO_INCREMENT,
     `UserEmail` varchar(100) NOT NULL,
     `Issue`	varchar(100) NOT NULL,
@@ -128,7 +128,7 @@ CREATE TABLE `tbltourpackages`(
   );
 
   
-create table tblpages(
+create or replace table tblpages(
   `type` varchar(100) NOT NULL,
   `detail` TEXT NOT NULL
 );
@@ -143,4 +143,22 @@ create table tblpages(
  ('candc', 'test8'),
  ('contact', '<a href="javascript:void(0);" onClick="enquiry.php">');
 
- 
+ /*
+CREATE or replace TABLE `searchlog`(
+  SearchId INT AUTO_INCREMENT,
+  Source varchar(100) NOT NULL,
+  Destination varchar(100) NOT NULL,
+  FromDate DATE,
+  ToDate DATE,
+  NumberOfPeoples int(11) NOT NULL,
+  Budget int(11) NOT NULL,
+  PRIMARY KEY(SearchId)
+);
+
+
+create or replace trigger compare 
+after insert of Source ON searchlog
+for each row
+BEGIN
+SELECT PackageID from searchlog, tbltourpackages where Destination=PackageLocation and 
+END;*/

@@ -132,7 +132,7 @@ foreach($results as $result)
 						<div class="clearfix"></div>
 				<div class="grand">
 					<p>Grand Total</p>
-					<h3>INR  <?php echo htmlentities($result->PackagePrice);?></h3>
+					<h3>INR  <?php echo htmlentities($result->StayPrice+$result->Bus+$result->Train+$result->Airlines);?></h3>
 				</div>
 			</div>
 		<h3>Package Details</h3>

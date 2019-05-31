@@ -1,8 +1,45 @@
 <?php
 session_start();
 error_reporting(0);
-include('includes/config.php');
-?>
+include('includes/config.php');	
+if(isset($_POST['submit']))
+{
+	$fromloc=$_POST['fromloc'];
+	$toloc=$_POST['toloc'];
+	$fromdate=$_POST['fromdate'];
+	$todate=$_POST['todate'];
+	$numpeople=$_POST['numpeople'];
+	$budget=$_POST['budget'];
+	
+	$sql = "SELECT * from tbltourpackages where PackageLocation=:toloc";
+
+$query = $dbh->prepare($sql);
+$query->execute();
+$results=$query->fetchAll(PDO::FETCH_OBJ);
+$cnt=1;
+if($query->rowCount() > 0)
+{
+foreach($results as $result)
+{	?>
+			<div class="rom-btm">
+				<div class="col-md-3 room-left wow fadeInLeft animated" data-wow-delay=".5s">
+					<img src="admin/pacakgeimages/<?php echo htmlentities($result->PackageImage);?>" class="img-responsive" alt="">
+				</div>
+				<div class="col-md-6 room-midle wow fadeInUp animated" data-wow-delay=".5s">
+					<h4>Package Location: <?php echo htmlentities($result->PackageLocation);?></h4>
+					<h6>Number of Days : <?php echo htmlentities($result->NumberOfDays);?></h6>
+					<p><b>Package Detail :</b> <?php echo htmlentities($result->PackageDetails);?></p>
+					<p><b>Number of People :</b> <?php echo htmlentities($result->NumberOfPeoples);?></p>
+				</div>
+				<div class="col-md-3 room-right wow fadeInRight animated" data-wow-delay=".5s">
+					<h5>INR <?php echo htmlentities($result->StayPrice);?></h5>
+					<a href="package-details.php?pkgid=<?php echo htmlentities($result->PackageId);?>" class="view">Details</a>
+				</div>
+				<div class="clearfix"></div>
+			</div>
+
+<?php }}} ?>
+
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -81,7 +118,7 @@ include('includes/config.php');
             <div class="clearfix"></div>
 			<ul style="list-style: none;">
             <li class="spe" align="center">
-					<button type="submit" name="search" class="btn-primary btn">Search</button>
+					<button type="submit" name="submit" class="btn-primary btn">Search</button>
 						</li>
 						<ul style="list-style: none;">
             </div>
@@ -99,14 +136,21 @@ include('includes/config.php');
 
 <div class="container">
 	<div class="holiday">
-
-
-
-
 	<h3>Package List</h3>
 
 
-<?php $sql = "SELECT * from tbltourpackages order by rand() limit 4";
+<?php 
+if(isset($_POST['submit']))
+{
+	$fromloc=$_POST['fromloc'];
+	$toloc=$_POST['toloc'];
+	$fromdate=$_POST['fromdate'];
+	$todate=$_POST['todate'];
+	$numpeople=$_POST['numpeople'];
+	$budget=$_POST['budget'];
+
+$sql = "SELECT PackageId from tbltourpackages where PackageLocation=:toloc";
+
 $query = $dbh->prepare($sql);
 $query->execute();
 $results=$query->fetchAll(PDO::FETCH_OBJ);
@@ -132,7 +176,7 @@ foreach($results as $result)
 				<div class="clearfix"></div>
 			</div>
 
-<?php }} ?>
+<?php }}} ?>
 
 
 <div><a href="package-list.php" class="view">View More Packages</a></div>
