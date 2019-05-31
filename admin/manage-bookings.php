@@ -3,10 +3,10 @@ session_start();
 error_reporting(0);
 include('includes/config.php');
 if(strlen($_SESSION['alogin'])==0)
-	{	
+	{
 header('location:index.php');
 }
-else{ 
+else{
 	// code for cancel
 if(isset($_REQUEST['bkid']))
 	{
@@ -51,7 +51,7 @@ $msg="Booking Confirm successfully";
 <link href="css/bootstrap.min.css" rel='stylesheet' type='text/css' />
 <link href="css/style.css" rel='stylesheet' type='text/css' />
 <link rel="stylesheet" href="css/morris.css" type="text/css"/>
-<link href="css/font-awesome.css" rel="stylesheet"> 
+<link href="css/font-awesome.css" rel="stylesheet">
 <script src="js/jquery-2.1.4.min.js"></script>
 <link rel="stylesheet" type="text/css" href="css/table-style.css" />
 <link rel="stylesheet" type="text/css" href="css/basictable.css" />
@@ -104,7 +104,7 @@ $msg="Booking Confirm successfully";
     box-shadow: 0 1px 1px 0 rgba(0,0,0,.1);
 }
 		</style>
-</head> 
+</head>
 <body>
    <div class="page-container">
    <!--/content-inner-->
@@ -112,15 +112,15 @@ $msg="Booking Confirm successfully";
 	   <div class="mother-grid-inner">
             <!--header start here-->
 				<?php include('includes/header.php');?>
-				     <div class="clearfix"> </div>	
+				     <div class="clearfix"> </div>
 				</div>
 <!--heder end here-->
 <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="index.html">Home</a><i class="fa fa-angle-right"></i>Manage Bookings</li>
             </ol>
-<div class="agile-grids">	
+<div class="agile-grids">
 				<!-- tables -->
-				<?php if($error){?><div class="errorWrap"><strong>ERROR</strong>:<?php echo htmlentities($error); ?> </div><?php } 
+				<?php if($error){?><div class="errorWrap"><strong>ERROR</strong>:<?php echo htmlentities($error); ?> </div><?php }
 				else if($msg){?><div class="succWrap"><strong>SUCCESS</strong>:<?php echo htmlentities($msg); ?> </div><?php }?>
 				<div class="agile-tables">
 					<div class="w3l-table-info">
@@ -148,7 +148,7 @@ $cnt=1;
 if($query->rowCount() > 0)
 {
 foreach($results as $result)
-{				?>		
+{				?>
 						  <tr>
 							<td>#BK-<?php echo htmlentities($result->bookid);?></td>
 							<td><?php echo htmlentities($result->fname);?></td>
@@ -168,7 +168,7 @@ echo "Confirmed";
 if($result->status==2 and  $result->cancelby=='a')
 {
 echo "Canceled by you at " .$result->upddate;
-} 
+}
 if($result->status==2 and $result->cancelby=='u')
 {
 echo "Canceled by User at " .$result->upddate;
@@ -180,7 +180,7 @@ echo "Canceled by User at " .$result->upddate;
 {
 	?><td>Cancelled</td>
 <?php } else {?>
-<td><a href="manage-bookings.php?bkid=<?php echo htmlentities($result->bookid);?>" onclick="return confirm('Do you really want to cancel booking')" >Cancel</a> / <a href="manage-bookings.php?bckid=<?php echo htmlentities($result->bookid);?>" onclick="return confirm('Do you really want to cancel booking')" >Confirm</a></td>
+<td><a href="manage-bookings.php?bkid=<?php echo htmlentities($result->bookid);?>" onclick="return confirm('Do you really want to cancel booking')" >Cancel</a> / <a href="manage-bookings.php?bckid=<?php echo htmlentities($result->bookid);?>" onclick="return confirm('Do you really want to confirm booking')" >Confirm</a></td>
 <?php }?>
 
 						  </tr>
@@ -190,21 +190,21 @@ echo "Canceled by User at " .$result->upddate;
 					</div>
 				  </table>
 
-				
+
 			</div>
 <!-- script-for sticky-nav -->
 		<script>
 		$(document).ready(function() {
 			 var navoffeset=$(".header-main").offset().top;
 			 $(window).scroll(function(){
-				var scrollpos=$(window).scrollTop(); 
+				var scrollpos=$(window).scrollTop();
 				if(scrollpos >=navoffeset){
 					$(".header-main").addClass("fixed");
 				}else{
 					$(".header-main").removeClass("fixed");
 				}
 			 });
-			 
+
 		});
 		</script>
 		<!-- /script-for sticky-nav -->
@@ -221,12 +221,12 @@ echo "Canceled by User at " .$result->upddate;
   <!--//content-inner-->
 		<!--/sidebar-menu-->
 						<?php include('includes/sidebarmenu.php');?>
-							  <div class="clearfix"></div>		
+							  <div class="clearfix"></div>
 							</div>
 							<script>
 							var toggle = true;
-										
-							$(".sidebar-icon").click(function() {                
+
+							$(".sidebar-icon").click(function() {
 							  if (toggle)
 							  {
 								$(".page-container").addClass("sidebar-collapsed").removeClass("sidebar-collapsed-back");
@@ -239,7 +239,7 @@ echo "Canceled by User at " .$result->upddate;
 								  $("#menu span").css({"position":"relative"});
 								}, 400);
 							  }
-											
+
 											toggle = !toggle;
 										});
 							</script>
@@ -248,7 +248,7 @@ echo "Canceled by User at " .$result->upddate;
 <script src="js/scripts.js"></script>
 <!-- Bootstrap Core JavaScript -->
    <script src="js/bootstrap.min.js"></script>
-   <!-- /Bootstrap Core JavaScript -->	   
+   <!-- /Bootstrap Core JavaScript -->
 
 </body>
 </html>
