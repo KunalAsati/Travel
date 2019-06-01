@@ -149,7 +149,7 @@ foreach($results as $result)
 
 <?php }}
 else{
-	// echo ();
+	 echo (no package avialable);
 	// echo ();
 	// echo ();
 	// echo ();
