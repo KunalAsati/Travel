@@ -9,7 +9,9 @@ $pid=intval($_GET['pkgid']);
 $useremail=$_SESSION['login'];
 $fromdate=$_POST['fromdate'];
 $todate=$_POST['todate'];
-$price=$_POST['price1'];
+$vehicle=$_POST['vehicle'];
+$stayprice=$_POST['price1'];
+$price=$stayprice+$vehicle;
 $comment=$_POST['comment'];
 $status=0;
 $sql="INSERT INTO tblbooking(PackageId,UserEmail,FromDate,ToDate,Price,Comment,status) VALUES(:pid,:useremail,:fromdate,:todate,:price,:comment,:status)";
@@ -114,7 +116,7 @@ foreach($results as $result)
 {	?>
 
 <form  name="book" method="post">
-<input type="hidden" id="price1" name="price1" required="">
+
 		<div class="selectroom_top">
 			<div class="col-md-4 selectroom_left wow fadeInLeft animated" data-wow-delay=".5s">
 				<img src="admin/pacakgeimages/<?php echo htmlentities($result->PackageImage);?>" class="img-responsive" alt="">
@@ -130,7 +132,7 @@ foreach($results as $result)
 					
 					<script type="text/javascript">
 function selectOption(){
-var rd1= document.getElementById("vehicle");
+var rd1= document.getElementById("vehicle1");
 var rd2= document.getElementById("vehicle2");
 var rd3= document.getElementById("vehicle3");
 
@@ -153,10 +155,10 @@ if(rd3.checked==true){
 }
 	</script>
 					<h3>Travel by</h3>
-					<input type="radio" id="vehicle" name="vehicle" value="1" onclick="selectOption()"> Bus- ₹<?php echo htmlentities($result->Bus);?> 
-  <input type="radio" name="vehicle" id="vehicle2" value="2" onclick="selectOption()"> Train: ₹<?php echo htmlentities($result->Train);?>
+					<input type="radio" name="vehicle" id="vehicle1" value="<?php echo htmlentities($result->Bus);?>" onclick="selectOption()"> Bus: ₹<?php echo htmlentities($result->Bus);?> 
+  <input type="radio" name="vehicle" id="vehicle2" value="<?php echo htmlentities($result->Train);?>" onclick="selectOption()"> Train: ₹<?php echo htmlentities($result->Train);?>
 
-  <input type="radio" name="vehicle" id="vehicle3" value="3" onclick="selectOption()"> Flight- ₹<?php echo htmlentities($result->Airlines);?>
+  <input type="radio" name="vehicle" id="vehicle3" value="<?php echo htmlentities($result->Airlines);?>" onclick="selectOption()"> Flight: ₹<?php echo htmlentities($result->Airlines);?>
 					<div class="ban-bottom">
 				<div class="bnr-right">
 				<label class="inputLabel">From</label>
@@ -171,11 +173,12 @@ if(rd3.checked==true){
 						<div class="clearfix"></div>
 				<div class="grand">
 					<p>Grand Total</p>
-					
+					<input type="hidden" id="price1" name="price1" value="<?php echo htmlentities($result->StayPrice);?>">
 					<h3 id="grandPrice">₹<?php echo htmlentities($result->StayPrice)?></h3>
 				</div>
 			</div>
 		<h3>Package Details</h3>
+		
 				<p style="padding-top: 1%"><?php echo htmlentities($result->PackageDetails);?> </p>
 				<div class="clearfix"></div>
 		</div>
