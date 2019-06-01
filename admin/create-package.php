@@ -7,7 +7,7 @@ if(strlen($_SESSION['alogin'])==0)
 header('location:index.php');
 }
 else{
-if(isset($_POST['submit']))
+if(isset($_POST['submit5']))
 {
 	$plocation=$_POST['packagelocation'];
 	$pnumpeople=$_POST['pnumpeople'];
@@ -174,7 +174,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 								<div class="row">
 			<div class="col-sm-8 col-sm-offset-2">
-				<button type="submit" name="submit" class="btn-primary btn">Create</button>
+				<button type="submit" name="submit5" class="btn-primary btn">Create</button>
 
 				<button type="reset" class="btn-inverse btn">Reset</button>
 			</div>
