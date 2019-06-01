@@ -119,7 +119,7 @@ $error="You can't cancel booking before 24 hours";
 <tr align="center">
 <th>#</th>
 <th>Booking Id</th>
-<th>Package Name</th>	
+<th>Package Location</th>	
 <th>From</th>
 <th>To</th>
 <th>Comment</th>
@@ -130,7 +130,7 @@ $error="You can't cancel booking before 24 hours";
 <?php 
 
 $uemail=$_SESSION['login'];;
-$sql = "SELECT tblbooking.BookingId as bookid,tblbooking.PackageId as pkgid,tbltourpackages.PackageName as packagename,tblbooking.FromDate as fromdate,tblbooking.ToDate as todate,tblbooking.Comment as comment,tblbooking.status as status,tblbooking.RegDate as regdate,tblbooking.CancelledBy as cancelby,tblbooking.UpdationDate as upddate from tblbooking join tbltourpackages on tbltourpackages.PackageId=tblbooking.PackageId where UserEmail=:uemail";
+$sql = "SELECT tblbooking.BookingId as bookid,tblbooking.PackageId as pkgid,tbltourpackages.PackageLocation as packageloc,tblbooking.FromDate as fromdate,tblbooking.ToDate as todate,tblbooking.Comment as comment,tblbooking.status as status,tblbooking.RegDate as regdate,tblbooking.CancelledBy as cancelby,tblbooking.UpdationDate as upddate from tblbooking join tbltourpackages on tbltourpackages.PackageId=tblbooking.PackageId where UserEmail=:uemail";
 $query = $dbh->prepare($sql);
 $query -> bindParam(':uemail', $uemail, PDO::PARAM_STR);
 $query->execute();
@@ -143,7 +143,7 @@ foreach($results as $result)
 <tr align="center">
 <td><?php echo htmlentities($cnt);?></td>
 <td>#BK<?php echo htmlentities($result->bookid);?></td>
-<td><a href="package-details.php?pkgid=<?php echo htmlentities($result->pkgid);?>"><?php echo htmlentities($result->packagename);?></a></td>
+<td><a href="package-details.php?pkgid=<?php echo htmlentities($result->pkgid);?>"><?php echo htmlentities($result->packageloc);?></a></td>
 <td><?php echo htmlentities($result->fromdate);?></td>
 <td><?php echo htmlentities($result->todate);?></td>
 <td><?php echo htmlentities($result->comment);?></td>
