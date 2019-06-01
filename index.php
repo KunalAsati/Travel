@@ -115,7 +115,7 @@ if(isset($_POST['search']))
 	$numpeople=$_POST['numpeople'];
 	$budget=$_POST['budget'];
 
-$sql = "SELECT * from tbltourpackages where PackageLocation=:tolocand and StayPrice<=:budget or NumberOfDays=:datediff or NumberOfPeoples=:numpeople ";
+$sql = "SELECT * from tbltourpackages where PackageLocation=:toloc and StayPrice<=:budget or NumberOfDays=:datediff or NumberOfPeoples=:numpeople ";
 /* */
 $query = $dbh->prepare($sql);
 $query->bindParam(':toloc',$toloc,PDO::PARAM_STR);
@@ -157,16 +157,16 @@ else{
 
 	$useremail=$_SESSION['login'];
 	$sql1 ="INSERT INTO searchlog(UserEmail,Source,Destination,FromDate,ToDate,NumberOfPeoples,Budget) VALUES(:useremail,:fromloc,:toloc,fromdate,:todate,:numpeople,:budget)";
-	$query = $dbh->prepare($sql1);
-	$query->bindParam(':useremail',$useremail,PDO::PARAM_STR);
-	$query->bindParam(':fromloc',$fromloc,PDO::PARAM_STR);
-	$query->bindParam(':toloc',$toloc,PDO::PARAM_STR);	
-	$query->bindParam(':fromdate',$fromdate,PDO::PARAM_STR);
-	$query->bindParam(':todate',$todate,PDO::PARAM_STR);
-	$query->bindParam(':numpeople',$numpeople,PDO::PARAM_STR);
-	$query->bindParam(':budget',$budget,PDO::PARAM_STR);
-	$query->execute();
-	$results=$query->fetchAll(PDO::FETCH_OBJ);
+	$query1 = $dbh->prepare($sql1);
+	$query1->bindParam(':useremail',$useremail,PDO::PARAM_STR);
+	$query1->bindParam(':fromloc',$fromloc,PDO::PARAM_STR);
+	$query1->bindParam(':toloc',$toloc,PDO::PARAM_STR);	
+	$query1->bindParam(':fromdate',$fromdate,PDO::PARAM_STR);
+	$query1->bindParam(':todate',$todate,PDO::PARAM_STR);
+	$query1->bindParam(':numpeople',$numpeople,PDO::PARAM_STR);
+	$query1->bindParam(':budget',$budget,PDO::PARAM_STR);
+	$query1->execute();
+	$results1=$query1->fetchAll(PDO::FETCH_OBJ);
 	$lastInsertId = $dbh->lastInsertId();
 	if($lastInsertId)
 	{
