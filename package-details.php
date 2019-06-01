@@ -56,27 +56,9 @@ $error="Something went wrong. Please try again";
 	<script>
 		 new WOW().init();
 	</script>
-	<script src="vehicle.js"></script>
+	
 
-	<script type="text/javascript">
-function selectOption(){
-var rd1= document.getElementById(vehicle1);
-var rd2= document.getElementById(vehicle2);
-var rd3= document.getElementById(vehicle3);
-
-
-if(rd1.checked==true){
-	document.getElementById("grandPrice").innerHTML="₹<?php echo htmlentities($result->StayPrice+$result->Bus)?>";
-}
-if(rd1.checked==true){
-	document.getElementById("grandPrice").innerHTML="₹<?php echo htmlentities($result->StayPrice+$result->Train)?>";
-}
-if(rd1.checked==true){
-
-	document.getElementById("grandPrice").innerHTML="₹<?php echo htmlentities($result->StayPrice+$result->Airlines)?>";
-}
-}
-	</script>
+	
 
 <script src="js/jquery-ui.js"></script>
 					<script>
@@ -143,7 +125,25 @@ foreach($results as $result)
 					<p><b>Number of days: </b> <?php echo htmlentities($result->NumberOfDays);?></p>
 
 					<p><b>Stay Price: </b> <?php echo htmlentities($result->StayPrice);?></p>
-					
+					<script type="text/javascript">
+function selectOption(){
+var rd1= document.getElementById("vehicle");
+var rd2= document.getElementById("vehicle2");
+var rd3= document.getElementById("vehicle3");
+
+
+if(rd1.checked==true){
+	document.getElementById("grandPrice").innerHTML="₹<?php echo htmlentities($result->StayPrice+$result->Bus)?>";
+}
+else if(rd2.checked==true){
+	document.getElementById("grandPrice").innerHTML="₹<?php echo htmlentities($result->StayPrice+$result->Train)?>";
+}
+if(rd3.checked==true){
+
+	document.getElementById("grandPrice").innerHTML="₹<?php echo htmlentities($result->StayPrice+$result->Airlines)?>";
+}
+}
+	</script>
 					<h3>Travel by</h3>
 					<input type="radio" id="vehicle" name="vehicle" value="1" onclick="selectOption()"> Bus- ₹<?php echo htmlentities($result->Bus);?> 
   <input type="radio" name="vehicle" id="vehicle2" value="2" onclick="selectOption()"> Train: ₹<?php echo htmlentities($result->Train);?>
