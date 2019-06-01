@@ -3,13 +3,14 @@
 session_start();
 error_reporting(0);
 include('includes/config.php');
+include('package-details.php');
 if(isset($_POST['submit2']))
 {
 $pid=intval($_GET['pkgid']);
 $useremail=$_SESSION['login'];
 $fromdate=$_POST['fromdate'];
 $todate=$_POST['todate'];
-$price=$price1;
+$price=$_POST['price1'];
 $comment=$_POST['comment'];
 $status=0;
 $sql="INSERT INTO tblbooking(PackageId,UserEmail,FromDate,ToDate,Price,Comment,status) VALUES(:pid,:useremail,:fromdate,:todate,:price,:comment,:status)";
@@ -113,7 +114,8 @@ if($query->rowCount() > 0)
 foreach($results as $result)
 {	?>
 
-<form name="book" method="post">
+<form  name="book" method="post">
+<input type="hidden" id="price1" name="price1" required="">
 		<div class="selectroom_top">
 			<div class="col-md-4 selectroom_left wow fadeInLeft animated" data-wow-delay=".5s">
 				<img src="admin/pacakgeimages/<?php echo htmlentities($result->PackageImage);?>" class="img-responsive" alt="">
@@ -135,16 +137,19 @@ var rd3= document.getElementById("vehicle3");
 
 
 if(rd1.checked==true){
-	document.getElementById("grandPrice").innerHTML="₹<?php $price1=$result->StayPrice+$result->Bus; echo htmlentities($result->StayPrice+$result->Bus)?>";
-	
+
+	document.getElementById("grandPrice").innerHTML="₹<?php  echo htmlentities($result->StayPrice+$result->Bus)?>";
+	document.getElementById("price1").innerHTML="<?php  echo htmlentities($result->StayPrice+$result->Bus)?>";
 	
 }
 else if(rd2.checked==true){
-	document.getElementById("grandPrice").innerHTML="₹<?php $price1=$result->StayPrice+$result->Train; echo htmlentities($result->StayPrice+$result->Train)?>";
+	document.getElementById("grandPrice").innerHTML="₹<?php  echo htmlentities($result->StayPrice+$result->Train)?>";
+	document.getElementById("price1").innerHTML="<?php  echo htmlentities($result->StayPrice+$result->Train)?>";
 }
 if(rd3.checked==true){
 
-	document.getElementById("grandPrice").innerHTML="₹<?php $price1=$result->StayPrice+$result->Airlines; echo htmlentities($result->StayPrice+$result->Airlines)?>";
+	document.getElementById("grandPrice").innerHTML="₹<?php  echo htmlentities($result->StayPrice+$result->Airlines)?>";
+	document.getElementById("price1").innerHTML="<?php  echo htmlentities($result->StayPrice+$result->Airlines)?>";
 }
 }
 	</script>
