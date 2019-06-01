@@ -1,4 +1,5 @@
 <?php
+
 session_start();
 error_reporting(0);
 include('includes/config.php');
@@ -8,7 +9,7 @@ $pid=intval($_GET['pkgid']);
 $useremail=$_SESSION['login'];
 $fromdate=$_POST['fromdate'];
 $todate=$_POST['todate'];
-$price=$_POST['price'];
+$price=$price1;
 $comment=$_POST['comment'];
 $status=0;
 $sql="INSERT INTO tblbooking(PackageId,UserEmail,FromDate,ToDate,Price,Comment,status) VALUES(:pid,:useremail,:fromdate,:todate,:price,:comment,:status)";
@@ -125,6 +126,7 @@ foreach($results as $result)
 					<p><b>Number of days: </b> <?php echo htmlentities($result->NumberOfDays);?></p>
 
 					<p><b>Stay Price: </b> <?php echo htmlentities($result->StayPrice);?></p>
+					
 					<script type="text/javascript">
 function selectOption(){
 var rd1= document.getElementById("vehicle");
@@ -133,14 +135,16 @@ var rd3= document.getElementById("vehicle3");
 
 
 if(rd1.checked==true){
-	document.getElementById("grandPrice").innerHTML="₹<?php echo htmlentities($result->StayPrice+$result->Bus)?>";
+	document.getElementById("grandPrice").innerHTML="₹<?php $price1=$result->StayPrice+$result->Bus; echo htmlentities($result->StayPrice+$result->Bus)?>";
+	
+	
 }
 else if(rd2.checked==true){
-	document.getElementById("grandPrice").innerHTML="₹<?php echo htmlentities($result->StayPrice+$result->Train)?>";
+	document.getElementById("grandPrice").innerHTML="₹<?php $price1=$result->StayPrice+$result->Train; echo htmlentities($result->StayPrice+$result->Train)?>";
 }
 if(rd3.checked==true){
 
-	document.getElementById("grandPrice").innerHTML="₹<?php echo htmlentities($result->StayPrice+$result->Airlines)?>";
+	document.getElementById("grandPrice").innerHTML="₹<?php $price1=$result->StayPrice+$result->Airlines; echo htmlentities($result->StayPrice+$result->Airlines)?>";
 }
 }
 	</script>
@@ -159,6 +163,7 @@ if(rd3.checked==true){
 				<input class="date" id="datepicker1" type="text" placeholder="dd-mm-yyyy" name="todate" required="">
 			</div>
 			</div>
+			
 						<div class="clearfix"></div>
 				<div class="grand">
 					<p>Grand Total</p>

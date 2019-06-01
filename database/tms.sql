@@ -45,7 +45,7 @@ INSERT INTO `admin` (`id`, `UserName`, `Password`, `updationDate`) VALUES
 -- Table structure for table `tblbooking`
 --
 
-CREATE TABLE or replace `tblbooking` (
+CREATE  or replace TABLE `tblbooking` (
   `BookingId` int(11) AUTO_INCREMENT,
   `PackageId` int(11) NOT NULL,
   `UserEmail` varchar(100) NOT NULL,
