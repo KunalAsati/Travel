@@ -8,7 +8,10 @@ if(isset($_POST['submit2']))
 $pid=intval($_GET['pkgid']);
 $useremail=$_SESSION['login'];
 $fromdate=$_POST['fromdate'];
-$todate=$_POST['todate'];
+$numday=$_POST['numday'];
+$interdate=strtotime("+$numday day", strtotime("$fromdate"));
+$todate=date("Y-m-d", $interdate);
+//$todate=$_POST['todate'];
 $vehicle=$_POST['vehicle'];
 $stayprice=$_POST['price1'];
 $price=$stayprice+$vehicle;
@@ -66,7 +69,7 @@ $error="Something went wrong. Please try again";
 <script src="js/jquery-ui.js"></script>
 					<script>
 						$(function() {
-						$( "#datepicker,#datepicker1" ).datepicker();
+						$( "#datepicker" ).datepicker();
 						});
 					</script>
 	  <style>
@@ -127,7 +130,7 @@ foreach($results as $result)
 				<p><b>Package Location :</b> <?php echo htmlentities($result->PackageLocation);?></p>
 				<p><b>Number of People:</b> <?php echo htmlentities($result->NumberOfPeoples);?></p>
 					<p><b>Number of days: </b> <?php echo htmlentities($result->NumberOfDays);?></p>
-
+					<input type="hidden" id="numday" name="numday" value="<?php echo htmlentities($result->NumberOfDays);?>">
 					<p><b>Stay Price: </b> <?php echo htmlentities($result->StayPrice);?></p>
 					
 					<script type="text/javascript">
@@ -164,10 +167,10 @@ if(rd3.checked==true){
 				<label class="inputLabel">From</label>
 				<input class="date" id="datepicker" type="text" placeholder="dd-mm-yyyy"  name="fromdate" required="">
 			</div>
-			<div class="bnr-right">
+			<!--<div class="bnr-right">
 				<label class="inputLabel">To</label>
 				<input class="date" id="datepicker1" type="text" placeholder="dd-mm-yyyy" name="todate" required="datepicker">
-			</div>
+			</div>-->
 			</div>
 			
 						<div class="clearfix"></div>
