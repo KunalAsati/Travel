@@ -106,17 +106,22 @@ include('includes/config.php');
 <?php 
 if(isset($_POST['search']))
 {
+	$useremail=$_SESSION['login'];
 	$fromloc=$_POST['fromloc'];
 	$toloc=$_POST['toloc'];
 	$fromdate=$_POST['fromdate'];
 	$todate=$_POST['todate'];
+	$datediff=date_diff($todate,$fromdate);
 	$numpeople=$_POST['numpeople'];
 	$budget=$_POST['budget'];
 
-$sql = "SELECT * from tbltourpackages where PackageLocation=:toloc";
-
+$sql = "SELECT * from tbltourpackages where PackageLocation=:tolocand and StayPrice<=:budget or NumberOfDays=:datediff or NumberOfPeoples=:numpeople ";
+/* */
 $query = $dbh->prepare($sql);
 $query->bindParam(':toloc',$toloc,PDO::PARAM_STR);
+$query->bindParam(':datediff',$datediff,PDO::PARAM_STR);
+$query->bindParam(':numpeople',$numpeople,PDO::PARAM_STR);
+$query->bindParam(':budget',$budget,PDO::PARAM_STR);
 $query->execute();
 $results=$query->fetchAll(PDO::FETCH_OBJ);
 $cnt=1;
@@ -141,7 +146,38 @@ foreach($results as $result)
 				<div class="clearfix"></div>
 			</div>
 
-<?php }}}
+<?php }}
+else{
+	/*$fromloc=$_POST['fromloc'];
+	$toloc=$_POST['toloc'];
+	$fromdate=$_POST['fromdate'];
+	$todate=$_POST['todate'];
+	$numpeople=$_POST['numpeople'];
+	$budget=$_POST['budget'];*/
+
+	$useremail=$_SESSION['login'];
+	$sql1 ="INSERT INTO searchlog(UserEmail,Source,Destination,FromDate,ToDate,NumberOfPeoples,Budget) VALUES(:useremail,:fromloc,:toloc,fromdate,:todate,:numpeople,:budget)";
+	$query = $dbh->prepare($sql1);
+	$query->bindParam(':useremail',$useremail,PDO::PARAM_STR);
+	$query->bindParam(':fromloc',$fromloc,PDO::PARAM_STR);
+	$query->bindParam(':toloc',$toloc,PDO::PARAM_STR);	
+	$query->bindParam(':fromdate',$fromdate,PDO::PARAM_STR);
+	$query->bindParam(':todate',$todate,PDO::PARAM_STR);
+	$query->bindParam(':numpeople',$numpeople,PDO::PARAM_STR);
+	$query->bindParam(':budget',$budget,PDO::PARAM_STR);
+	$query->execute();
+	$results=$query->fetchAll(PDO::FETCH_OBJ);
+	$lastInsertId = $dbh->lastInsertId();
+	if($lastInsertId)
+	{
+	$msg="we will suggest you package via notification";
+	}
+	else
+	{
+	$error="Something went wrong. Please try again";
+	}
+
+}}
 else{
 						
 $sql = "SELECT * from tbltourpackages order by rand() limit 4";

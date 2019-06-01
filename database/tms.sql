@@ -101,21 +101,6 @@ CREATE or replace TABLE `tbltourpackages`(
 )ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 
-  
-/* old database
-CREATE TABLE `tbltourpackages`(
-  `PackageId` INT AUTO_INCREMENT PRIMARY KEY,
-  `PackageName` varchar(100) NOT NULL,
-  `PackageType` varchar(100) NOT NULL,
-  `PackageLocation` varchar(100) NOT NULL,
-  `PackagePrice` int(11) NOT NULL,
-  `PackageFetures` varchar(100) NOT NULL,
-  `PackageDetails` varchar(200) NOT NULL,
-  `PackageImage`   LONGBLOB NOT NULL
-  )ENGINE=InnoDB DEFAULT CHARSET=latin1;
- */
---use of below table is unkown
-
   Create or replace table `tblissues`(
     `id`	INT AUTO_INCREMENT,
     `UserEmail` varchar(100) NOT NULL,
@@ -143,19 +128,20 @@ create or replace table tblpages(
  ('candc', 'test8'),
  ('contact', '<a href="javascript:void(0);" onClick="enquiry.php">');
 
- /*
+ 
 CREATE or replace TABLE `searchlog`(
-  SearchId INT AUTO_INCREMENT,
-  Source varchar(100) NOT NULL,
-  Destination varchar(100) NOT NULL,
-  FromDate DATE,
-  ToDate DATE,
-  NumberOfPeoples int(11) NOT NULL,
-  Budget int(11) NOT NULL,
+  `SearchId` INT AUTO_INCREMENT,
+  `UserEmail` varchar(100) NOT NULL,
+  `Source` varchar(100) NOT NULL,
+  `Destination` varchar(100) NOT NULL,
+  `FromDate` DATE,
+  `ToDate` DATE,
+  `NumberOfPeoples` int(11) NOT NULL,
+  `Budget` int(11) NOT NULL,
   PRIMARY KEY(SearchId)
 );
 
-
+/*
 create or replace trigger compare 
 after insert of Source ON searchlog
 for each row
