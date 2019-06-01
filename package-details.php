@@ -3,7 +3,6 @@
 session_start();
 error_reporting(0);
 include('includes/config.php');
-include('package-details.php');
 if(isset($_POST['submit2']))
 {
 $pid=intval($_GET['pkgid']);
@@ -165,7 +164,7 @@ if(rd3.checked==true){
 			</div>
 			<div class="bnr-right">
 				<label class="inputLabel">To</label>
-				<input class="date" id="datepicker1" type="text" placeholder="dd-mm-yyyy" name="todate" required="">
+				<input class="date" id="datepicker1" type="text" placeholder="dd-mm-yyyy" name="todate" required="datepicker">
 			</div>
 			</div>
 			
@@ -210,7 +209,7 @@ if(rd3.checked==true){
 	</div>
 </div>
 <!--- /selectroom ---->
-<<!--- /footer-top ---->
+<!--- /footer-top ---->
 <?php include('includes/footer.php');?>
 <!-- signup -->
 <?php include('includes/signup.php');?>
