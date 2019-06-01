@@ -107,6 +107,7 @@ include('includes/config.php');
 if(isset($_POST['search']))
 {
 	$useremail=$_SESSION['login'];
+	
 	$fromloc=$_POST['fromloc'];
 	$toloc=$_POST['toloc'];
 	$fromdate=$_POST['fromdate'];
@@ -148,6 +149,14 @@ foreach($results as $result)
 
 <?php }}
 else{
+	// echo ();
+	// echo ();
+	// echo ();
+	// echo ();
+	// echo ();
+	// echo ();
+	// echo ();
+	
 	/*$fromloc=$_POST['fromloc'];
 	$toloc=$_POST['toloc'];
 	$fromdate=$_POST['fromdate'];
@@ -156,15 +165,16 @@ else{
 	$budget=$_POST['budget'];*/
 
 	//$useremail=$_SESSION['login'];
-	$sql1 ="INSERT INTO searchlog(UserEmail,Source,Destination,FromDate,ToDate,NumberOfPeoples,Budget) VALUES(:useremail,:fromloc,:toloc,fromdate,:todate,:numpeople,:budget)";
-	$query1 = $dbh1->prepare($sql1);
-	$query1->bindParam(':useremail',$useremail,PDO::PARAM_STR);
+	$sql1 ="INSERT INTO searchlog(UserEmail,Source,Destination,FromDate,ToDate,NumberOfPeoples,Budget) VALUES($useremail,$fromloc,$toloc,$fromdate,$todate,:$numpeople,$budget)";
+	//mysql_query(sql1);
+	echo " $query1 = $dbh1->prepare($sql1);";
+	/*$query1->bindParam(':useremail',$useremail,PDO::PARAM_STR);
 	$query1->bindParam(':fromloc',$fromloc,PDO::PARAM_STR);
 	$query1->bindParam(':toloc',$toloc,PDO::PARAM_STR);	
 	$query1->bindParam(':fromdate',$fromdate,PDO::PARAM_STR);
 	$query1->bindParam(':todate',$todate,PDO::PARAM_STR);
 	$query1->bindParam(':numpeople',$numpeople,PDO::PARAM_STR);
-	$query1->bindParam(':budget',$budget,PDO::PARAM_STR);
+	$query1->bindParam(':budget',$budget,PDO::PARAM_STR);*/
 	$query1->execute();
 	$lastInsertId = $dbh1->lastInsertId();
 	if($lastInsertId)
