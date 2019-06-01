@@ -149,20 +149,8 @@ foreach($results as $result)
 
 <?php }}
 else{
-	 echo "no package avialable";
-	// echo ();
-	// echo ();
-	// echo ();
-	// echo ();
-	// echo ();
-	// echo ();
+	 
 	
-	/*$fromloc=$_POST['fromloc'];
-	$toloc=$_POST['toloc'];
-	$fromdate=$_POST['fromdate'];
-	$todate=$_POST['todate'];
-	$numpeople=$_POST['numpeople'];
-	$budget=$_POST['budget'];*/
 
 	//$useremail=$_SESSION['login'];
 	$sql1 ="INSERT INTO searchlog(UserEmail,Source,Destination,FromDate,ToDate,NumberOfPeoples,Budget) VALUES($useremail,$fromloc,$toloc,$fromdate,$todate,:$numpeople,$budget)";
@@ -175,7 +163,7 @@ else{
 	$query1->bindParam(':todate',$todate,PDO::PARAM_STR);
 	$query1->bindParam(':numpeople',$numpeople,PDO::PARAM_STR);
 	$query1->bindParam(':budget',$budget,PDO::PARAM_STR);*/
-	$sql1->execute();
+	$query1->execute();
 	$lastInsertId = $dbh1->lastInsertId();
 	if($lastInsertId)
 	{
@@ -183,7 +171,7 @@ else{
 	}
 	else
 	{
-	$error="Something went wrong. Please try again";
+		echo "no package available";
 	}
 }
 
