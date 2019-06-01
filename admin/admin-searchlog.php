@@ -3,39 +3,25 @@ session_start();
 error_reporting(0);
 include('includes/config.php');
 if(strlen($_SESSION['alogin'])==0)
-	{
+	{	
 header('location:index.php');
 }
-else{
+else{ 
 	// code for cancel
-if(isset($_REQUEST['bkid']))
+if(isset($_REQUEST['eid']))
 	{
-$bid=intval($_GET['bkid']);
-$status=2;
-$cancelby='a';
-$sql = "UPDATE tblbooking SET status=:status,CancelledBy=:cancelby WHERE  BookingId=:bid";
-$query = $dbh->prepare($sql);
-$query -> bindParam(':status',$status, PDO::PARAM_STR);
-$query -> bindParam(':cancelby',$cancelby , PDO::PARAM_STR);
-$query-> bindParam(':bid',$bid, PDO::PARAM_STR);
-$query -> execute();
-
-$msg="Booking Cancelled successfully";
-}
-
-
-if(isset($_REQUEST['bckid']))
-	{
-$bcid=intval($_GET['bckid']);
+$eid=intval($_GET['eid']);
 $status=1;
-$cancelby='a';
-$sql = "UPDATE tblbooking SET status=:status WHERE BookingId=:bcid";
+
+$sql = "UPDATE tblenquiry SET Status=:status WHERE  id=:eid";
 $query = $dbh->prepare($sql);
 $query -> bindParam(':status',$status, PDO::PARAM_STR);
-$query-> bindParam(':bcid',$bcid, PDO::PARAM_STR);
+$query-> bindParam(':eid',$eid, PDO::PARAM_STR);
 $query -> execute();
-$msg="Booking Confirm successfully";
+
+$msg="Enquiry  successfully read";
 }
+
 
 
 
@@ -44,14 +30,14 @@ $msg="Booking Confirm successfully";
 <!DOCTYPE HTML>
 <html>
 <head>
-<title>TPR | Admin manage Bookings</title>
+<title>TMS | Admin manage requirement</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
 <link href="css/bootstrap.min.css" rel='stylesheet' type='text/css' />
 <link href="css/style.css" rel='stylesheet' type='text/css' />
 <link rel="stylesheet" href="css/morris.css" type="text/css"/>
-<link href="css/font-awesome.css" rel="stylesheet">
+<link href="css/font-awesome.css" rel="stylesheet"> 
 <script src="js/jquery-2.1.4.min.js"></script>
 <link rel="stylesheet" type="text/css" href="css/table-style.css" />
 <link rel="stylesheet" type="text/css" href="css/basictable.css" />
@@ -104,7 +90,19 @@ $msg="Booking Confirm successfully";
     box-shadow: 0 1px 1px 0 rgba(0,0,0,.1);
 }
 		</style>
-</head>
+		<script language="javascript" type="text/javascript">
+var popUpWin=0;
+function popUpWindow(URLStr, left, top, width, height)
+{
+ if(popUpWin)
+{
+if(!popUpWin.closed) popUpWin.close();
+}
+popUpWin = open(URLStr,'popUpWin', 'toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=no,copyhistory=yes,width='+600+',height='+600+',left='+left+', top='+top+',screenX='+left+',screenY='+top+'');
+}
+
+</script>
+</head> 
 <body>
    <div class="page-container">
    <!--/content-inner-->
@@ -112,99 +110,82 @@ $msg="Booking Confirm successfully";
 	   <div class="mother-grid-inner">
             <!--header start here-->
 				<?php include('includes/header.php');?>
-				     <div class="clearfix"> </div>
+				     <div class="clearfix"> </div>	
 				</div>
 <!--heder end here-->
 <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="index.html">Home</a><i class="fa fa-angle-right"></i>Manage Bookings</li>
+                <li class="breadcrumb-item"><a href="index.html">Home</a><i class="fa fa-angle-right"></i>Manage Issues</li>
             </ol>
-<div class="agile-grids">
+<div class="agile-grids">	
 				<!-- tables -->
-				<?php if($error){?><div class="errorWrap"><strong>ERROR</strong>:<?php echo htmlentities($error); ?> </div><?php }
+				<?php if($error){?><div class="errorWrap"><strong>ERROR</strong>:<?php echo htmlentities($error); ?> </div><?php } 
 				else if($msg){?><div class="succWrap"><strong>SUCCESS</strong>:<?php echo htmlentities($msg); ?> </div><?php }?>
 				<div class="agile-tables">
 					<div class="w3l-table-info">
-					  <h2>Manage Bookings</h2>
+					  <h2>Manage Package Requirement</h2>
 					    <table id="table">
 						<thead>
 						  <tr>
-						  <th>Booking id</th>
-							<th>Name</th>
-							<th>Mobile No.</th>
-							<th>Email Id</th>
-							<th>Location </th>
-							<th>From /To </th>
-							<th>Comment </th>
-							<th>Status </th>
+						  <th>#</th>
+                          <th>user</th>
+                            <th>source</th>	
+                            <th>Destination</th>
+                            <th>fromdate</th>
+                            <th>todate</th>
+                            <th>No. of people</th>
+                            <th>budget</th>
 							<th>Action </th>
+							
 						  </tr>
 						</thead>
 						<tbody>
-<?php $sql = "SELECT tblbooking.BookingId as bookid,tblusers.FullName as fname,tblusers.MobileNumber as mnumber,tblusers.EmailId as email,tbltourpackages.PackageLocation as pckname,tblbooking.PackageId as pid,tblbooking.FromDate as fdate,tblbooking.ToDate as tdate,tblbooking.Comment as comment,tblbooking.status as status,tblbooking.CancelledBy as cancelby,tblbooking.UpdationDate as upddate from tblusers join  tblbooking on  tblbooking.UserEmail=tblusers.EmailId join tbltourpackages on tbltourpackages.PackageId=tblbooking.PackageId";
+<?php $sql = "SELECT searchlog.SearchId as id,tblusers.EmailId as email,searchlog.Source as source,searchlog.Destination as dest,searchlog.FromDate as fromdate,searchlog.ToDate as todate,searchlog.NumberOfPeoples as numpeople,searchlog.Budget as budget from searchlog join tblusers on tblusers.EmailId=searchlog.UserEmail";
 $query = $dbh -> prepare($sql);
 $query->execute();
 $results=$query->fetchAll(PDO::FETCH_OBJ);
-$cnt=1;
+
 if($query->rowCount() > 0)
 {
 foreach($results as $result)
-{				?>
+{				?>		
 						  <tr>
-							<td>#BK-<?php echo htmlentities($result->bookid);?></td>
-							<td><?php echo htmlentities($result->fname);?></td>
-							<td><?php echo htmlentities($result->mnumber);?></td>
-							<td><?php echo htmlentities($result->email);?></td>
-							<td><a href="update-package.php?pid=<?php echo htmlentities($result->pid);?>"><?php echo htmlentities($result->pckname);?></a></td>
-							<td><?php echo htmlentities($result->fdate);?> To <?php echo htmlentities($result->tdate);?></td>
-								<td><?php echo htmlentities($result->comment);?></td>
-								<td><?php if($result->status==0)
-{
-echo "Pending";
-}
-if($result->status==1)
-{
-echo "Confirmed";
-}
-if($result->status==2 and  $result->cancelby=='a')
-{
-echo "Canceled by you at " .$result->upddate;
-}
-if($result->status==2 and $result->cancelby=='u')
-{
-echo "Canceled by User at " .$result->upddate;
+							<td width="10">#00<?php echo htmlentities($result->id);?></td>
+							<td width="400"><?php echo htmlentities($result->email);?></td>
+								
+							<td width="50"><?php echo htmlentities($result->source);?></td>
+						
+							<td width="50"><?php echo htmlentities($result->dest);?></a></td>
+							<td width="150"><?php echo htmlentities($result->fromdate);?></td>
+							
+								<td width="150"><?php echo htmlentities($result->todate);?></td>
+                                <td width="100"><?php echo htmlentities($result->numpeople);?></td>
+                                <td width="50"><?php echo htmlentities($result->budget);?></td>
 
-}
-?></td>
+<td><a href="javascript:void(0);" onClick="popUpWindow('update-searchlog.php?iid=<?php echo ($result->id);?>');">View </a>
+</td>
 
-<?php if($result->status==2)
-{
-	?><td>Cancelled</td>
-<?php } else {?>
-<td><a href="manage-bookings.php?bkid=<?php echo htmlentities($result->bookid);?>" onclick="return confirm('Do you really want to cancel booking')" >Cancel</a> / <a href="manage-bookings.php?bckid=<?php echo htmlentities($result->bookid);?>" onclick="return confirm('Do you really want to confirm booking')" >Confirm</a></td>
-<?php }?>
-
-						  </tr>
-						 <?php $cnt=$cnt+1;} }?>
+</tr>
+						 <?php } }?>
 						</tbody>
 					  </table>
 					</div>
 				  </table>
 
-
+				
 			</div>
 <!-- script-for sticky-nav -->
 		<script>
 		$(document).ready(function() {
 			 var navoffeset=$(".header-main").offset().top;
 			 $(window).scroll(function(){
-				var scrollpos=$(window).scrollTop();
+				var scrollpos=$(window).scrollTop(); 
 				if(scrollpos >=navoffeset){
 					$(".header-main").addClass("fixed");
 				}else{
 					$(".header-main").removeClass("fixed");
 				}
 			 });
-
+			 
 		});
 		</script>
 		<!-- /script-for sticky-nav -->
@@ -221,12 +202,12 @@ echo "Canceled by User at " .$result->upddate;
   <!--//content-inner-->
 		<!--/sidebar-menu-->
 						<?php include('includes/sidebarmenu.php');?>
-							  <div class="clearfix"></div>
+							  <div class="clearfix"></div>		
 							</div>
 							<script>
 							var toggle = true;
-
-							$(".sidebar-icon").click(function() {
+										
+							$(".sidebar-icon").click(function() {                
 							  if (toggle)
 							  {
 								$(".page-container").addClass("sidebar-collapsed").removeClass("sidebar-collapsed-back");
@@ -239,7 +220,7 @@ echo "Canceled by User at " .$result->upddate;
 								  $("#menu span").css({"position":"relative"});
 								}, 400);
 							  }
-
+											
 											toggle = !toggle;
 										});
 							</script>
@@ -248,7 +229,7 @@ echo "Canceled by User at " .$result->upddate;
 <script src="js/scripts.js"></script>
 <!-- Bootstrap Core JavaScript -->
    <script src="js/bootstrap.min.js"></script>
-   <!-- /Bootstrap Core JavaScript -->
+   <!-- /Bootstrap Core JavaScript -->	   
 
 </body>
 </html>

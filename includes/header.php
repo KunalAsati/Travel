@@ -9,6 +9,7 @@
 				<li class="prnt"><a href="change-password.php">Change Password</a></li>
 			<li class="prnt"><a href="tour-history.php">My Tour History</a></li>
 			<li class="prnt"><a href="issuetickets.php">Issue Tickets</a></li>
+			<li class="prnt"><a href="searchlog.php">Search recommendation</a></li>
 		</ul>
 		<ul class="tp-hd-rgt wow fadeInRight animated" data-wow-delay=".5s"> 
 			<li class="tol">Welcome :</li>				

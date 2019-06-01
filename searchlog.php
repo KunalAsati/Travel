@@ -64,7 +64,7 @@ else{
 <!--- privacy ---->
 <div class="privacy">
 	<div class="container">
-		<h3 class="wow fadeInDown animated animated" data-wow-delay=".5s" style="visibility: visible; animation-delay: 0.5s; animation-name: fadeInDown;">Issue Tickets</h3>
+		<h3 class="wow fadeInDown animated animated" data-wow-delay=".5s" style="visibility: visible; animation-delay: 0.5s; animation-name: fadeInDown;">Search Package recommendation</h3>
 		<form name="chngpwd" method="post" onSubmit="return valid();">
 		 <?php if($error){?><div class="errorWrap"><strong>ERROR</strong>:<?php echo htmlentities($error); ?> </div><?php } 
 				else if($msg){?><div class="succWrap"><strong>SUCCESS</strong>:<?php echo htmlentities($msg); ?> </div><?php }?>
@@ -72,18 +72,21 @@ else{
 	<table border="1" width="100%">
 <tr align="center">
 <th>#</th>
-<th>Ticket Id</th>
-<th>Issue</th>	
-<th>Description</th>
+<th>Search Id</th>
+<th>source</th>	
+<th>Destination</th>
+<th>fromdate</th>
+<th>todate</th>
+<th>No. of peoples</th>
+<th>budget</th>
 <th>Admin Remark</th>
-<th>Reg Date</th>
-<th>Remark date</th>
+
 
 </tr>
 <?php 
 
 $uemail=$_SESSION['login'];;
-$sql = "SELECT * from tblissues where UserEmail=:uemail";
+$sql = "SELECT * from searchlog where UserEmail=:uemail";
 $query = $dbh->prepare($sql);
 $query -> bindParam(':uemail', $uemail, PDO::PARAM_STR);
 $query->execute();
@@ -95,12 +98,14 @@ foreach($results as $result)
 {	?>
 <tr align="center">
 <td ><?php echo htmlentities($cnt);?></td>
-<td width="100">#TKT-<?php echo htmlentities($result->id);?></td>
-<td><?php echo htmlentities($result->Issue);?></td>
-<td width="300"><?php echo htmlentities($result->Description);?></td>
+<td width="100">#srch-<?php echo htmlentities($result->SearchId);?></td>
+<td><?php echo htmlentities($result->Source);?></td>
+<td width="300"><?php echo htmlentities($result->Destination);?></td>
+<td><?php echo htmlentities($result->FromDate);?></td>
+<td><?php echo htmlentities($result->ToDate);?></td>
+<td><?php echo htmlentities($result->NumberOfPeoples);?></td>
+<td><?php echo htmlentities($result->Budget);?></td>
 <td><?php echo htmlentities($result->AdminRemark);?></td>
-<td width="100"><?php echo htmlentities($result->PostingDate);?></td>
-<td width="100"><?php echo htmlentities($result->AdminremarkDate);?></td>
 </tr>
 <?php $cnt=$cnt+1; }} ?>
 	</table>

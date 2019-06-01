@@ -134,10 +134,11 @@ CREATE or replace TABLE `searchlog`(
   `UserEmail` varchar(100) NOT NULL,
   `Source` varchar(100) NOT NULL,
   `Destination` varchar(100) NOT NULL,
-  `FromDate` DATE,
-  `ToDate` DATE,
+  `FromDate` varchar(100) NOT NULL,
+  `ToDate` varchar(100) NOT NULL,
   `NumberOfPeoples` int(11) NOT NULL,
  `Budget` int(11) NOT NULL,
+ `AdminRemark` varchar(100) NOT NULL
   PRIMARY KEY(SearchId)
 );
 
