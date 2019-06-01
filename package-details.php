@@ -56,6 +56,28 @@ $error="Something went wrong. Please try again";
 	<script>
 		 new WOW().init();
 	</script>
+	<script src="vehicle.js"></script>
+
+	<script type="text/javascript">
+function selectOption(){
+var rd1= document.getElementById(vehicle1);
+var rd2= document.getElementById(vehicle2);
+var rd3= document.getElementById(vehicle3);
+
+
+if(rd1.checked==true){
+	document.getElementById("grandPrice").innerHTML="₹<?php echo htmlentities($result->StayPrice+$result->Bus)?>";
+}
+if(rd1.checked==true){
+	document.getElementById("grandPrice").innerHTML="₹<?php echo htmlentities($result->StayPrice+$result->Train)?>";
+}
+if(rd1.checked==true){
+
+	document.getElementById("grandPrice").innerHTML="₹<?php echo htmlentities($result->StayPrice+$result->Airlines)?>";
+}
+}
+	</script>
+
 <script src="js/jquery-ui.js"></script>
 					<script>
 						$(function() {
@@ -123,10 +145,10 @@ foreach($results as $result)
 					<p><b>Stay Price: </b> <?php echo htmlentities($result->StayPrice);?></p>
 					
 					<h3>Travel by</h3>
-					<input type="radio" name="vehicle" value="bus" checked> Bus- ₹<?php echo htmlentities($result->Bus);?> 
-  <input type="radio" name="vehicle" value="train"> Train: ₹<?php echo htmlentities($result->Train);?>
+					<input type="radio" id="vehicle" name="vehicle" value="1" onclick="selectOption()"> Bus- ₹<?php echo htmlentities($result->Bus);?> 
+  <input type="radio" name="vehicle" id="vehicle2" value="2" onclick="selectOption()"> Train: ₹<?php echo htmlentities($result->Train);?>
 
-  <input type="radio" name="vehicle" value="flight"> Flight- ₹<?php echo htmlentities($result->Airlines);?>
+  <input type="radio" name="vehicle" id="vehicle3" value="3" onclick="selectOption()"> Flight- ₹<?php echo htmlentities($result->Airlines);?>
 					<div class="ban-bottom">
 				<div class="bnr-right">
 				<label class="inputLabel">From</label>
@@ -140,7 +162,8 @@ foreach($results as $result)
 						<div class="clearfix"></div>
 				<div class="grand">
 					<p>Grand Total</p>
-					<h3>₹<?php echo htmlentities($result->StayPrice+$result->Bus+$result->Train+$result->Airlines);?></h3>
+					
+					<h3 id="grandPrice">₹<?php echo htmlentities($result->StayPrice)?></h3>
 				</div>
 			</div>
 		<h3>Package Details</h3>

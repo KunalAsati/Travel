@@ -1,4 +1,11 @@
 
+.reveal-if-active {
+    input[type="radio"]:checked ~ &,
+  input[type="checkbox"]:checked ~ & {
+      
+  }
+}
+
 html, body{
 	font-size: 100%;
 	background: #fff;
