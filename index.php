@@ -153,16 +153,16 @@ else{
 	
 
 	//$useremail=$_SESSION['login'];
-	$sql1 ="INSERT INTO searchlog(UserEmail,Source,Destination,FromDate,ToDate,NumberOfPeoples,Budget) VALUES($useremail,$fromloc,$toloc,$fromdate,$todate,:$numpeople,$budget)";
-	//mysql_query(sql1);
-	//echo " $query1 = $dbh1->prepare($sql1);";
-	/*$query1->bindParam(':useremail',$useremail,PDO::PARAM_STR);
+	$sql1 ="INSERT INTO searchlog(UserEmail,Source,Destination,FromDate,ToDate,NumberOfPeoples,Budget) VALUES(:useremail,:fromloc,:toloc,:fromdate,:todate,:numpeople,:budget)";
+	
+	$query1 = $dbh1->prepare($sql1);
+	$query1->bindParam(':useremail',$useremail,PDO::PARAM_STR);
 	$query1->bindParam(':fromloc',$fromloc,PDO::PARAM_STR);
 	$query1->bindParam(':toloc',$toloc,PDO::PARAM_STR);	
 	$query1->bindParam(':fromdate',$fromdate,PDO::PARAM_STR);
 	$query1->bindParam(':todate',$todate,PDO::PARAM_STR);
 	$query1->bindParam(':numpeople',$numpeople,PDO::PARAM_STR);
-	$query1->bindParam(':budget',$budget,PDO::PARAM_STR);*/
+	$query1->bindParam(':budget',$budget,PDO::PARAM_STR);
 	$query1->execute();
 	$lastInsertId = $dbh1->lastInsertId();
 	if($lastInsertId)
@@ -171,7 +171,7 @@ else{
 	}
 	else
 	{
-		echo "no package available";
+		$error="no package available";
 	}
 }
 

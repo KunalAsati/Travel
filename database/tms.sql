@@ -137,7 +137,7 @@ CREATE or replace TABLE `searchlog`(
   `FromDate` DATE,
   `ToDate` DATE,
   `NumberOfPeoples` int(11) NOT NULL,
-  `Budget` int(11) NOT NULL,
+ `Budget` int(11) NOT NULL,
   PRIMARY KEY(SearchId)
 );
 
